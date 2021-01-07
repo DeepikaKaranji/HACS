@@ -11,10 +11,9 @@ import java.util.HashMap;
 public class Topics{
 
 
-	public HashMap<String,Boolean> TopicList = new HashMap<String,Boolean>();
-	
-	
-	public void updateTopics(Properties properties){
+	//public HashMap<String,Boolean> TopicList = new HashMap<String,Boolean>();
+	public HashMap<String,Boolean> updateTopics(Properties properties){
+		HashMap<String,Boolean> TopicList = new HashMap<String,Boolean>();
 		try (AdminClient adminClient = AdminClient.create(properties)) {
 			ListTopicsResult listTopics = adminClient.listTopics();
 			Set<String> names = listTopics.names().get();
@@ -26,6 +25,8 @@ public class Topics{
 			e.printStackTrace();
 			//fail("Create test topic : " + topic + " failed, " + e.getMessage());
 		}
+		System.out.println("Topic list is: "+TopicList);
+		return TopicList;
 	}
 	
 	public void createTopic(String topic, int numberOfPartitions, int replicationFactor, Properties properties) {
@@ -37,8 +38,8 @@ public class Topics{
 			if(!contains){
 				NewTopic topicObj = new NewTopic(topic, numberOfPartitions, (short) replicationFactor);
 				adminClient.createTopics(Collections.singleton(topicObj)).all().get();
-				TopicList.put(topic,true);
-				System.out.println("Added "+topic+" in "+TopicList);
+				//TopicList.put(topic,true);
+				//System.out.println("Added "+topic+" in "+TopicList);
 			}
 			else{
 				System.out.println("==============Topic already existing==============");
@@ -57,8 +58,8 @@ public class Topics{
 			if(contains){
 				//NewTopic topicObj = new NewTopic(topic, numberOfPartitions, (short) replicationFactor);
 				adminClient.deleteTopics(Collections.singleton(topic));
-				TopicList.put(topic,false);
-				System.out.println("Removed "+topic+" in "+TopicList);
+				//TopicList.put(topic,false);
+				//System.out.println("Removed "+topic+" in "+TopicList);
 			}
 			else{
 				System.out.println("==============Topic not existing==============");

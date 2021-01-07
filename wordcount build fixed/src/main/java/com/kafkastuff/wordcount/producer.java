@@ -2,6 +2,9 @@ package com.kafkastuff.wordcount;
 import java.util.Properties;
 import java.util.Collections;
 import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.kafka.clients.producer.Producer;
 //import com.kafkastuff.wordcount.KafkaProducer;
 //import com.kafkastuff.wordcount.Producer_kafka;
@@ -13,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.admin.ListTopicsResult;
+import org.apache.kafka.clients.admin.ListConsumerGroupsResult;
 import org.apache.kafka.common.securekafkastuff.Topics;
 
 
@@ -20,19 +24,12 @@ public class producer {
 	
 	private static final Logger logger = LogManager.getLogger(producer.class);
 	
-	
-	
-	public static void createTestTopic(String topic, int numberOfPartitions, int replicationFactor, Properties properties) {
+	public static void listGroups(Properties properties) {
 		//LOG.info("Creating topic {}", topic);
-		System.out.println("Topic is: "+topic);
-		try (AdminClient adminClient = AdminClient.create(new Properties())) {
-			ListTopicsResult listTopics = adminClient.listTopics();
-			Set<String> names = listTopics.names().get();
-			boolean contains = names.contains(topic);
-			if(!contains){
-				NewTopic topicObj = new NewTopic(topic, numberOfPartitions, (short) replicationFactor);
-				adminClient.createTopics(Collections.singleton(topicObj)).all().get();
-			}
+		try (AdminClient adminClient = AdminClient.create(properties)) {
+			ListConsumerGroupsResult listGroups = adminClient.listConsumerGroups();
+			List<String> groupIds = listGroups.all().get().stream().map(s -> s.groupId()).collect(Collectors.toList()); 
+			System.out.println("Group IDs: "+groupIds);
 		} catch (Exception e) {
 			e.printStackTrace();
 			//fail("Create test topic : " + topic + " failed, " + e.getMessage());
@@ -56,11 +53,12 @@ public class producer {
 		props_1.put("bootstrap.servers", "localhost:9092"); 
 		//createTestTopic(topicName,1,1,props_1);
 		Topics t = new Topics();
-		t.updateTopics(props_1);
+		//t.updateTopics(props_1);
 		t.createTopic(topicName,1,1,props_1);
+		
+		//listGroups(props_1);
 
 		Properties props = new Properties();
-
 		props.put("bootstrap.servers", "localhost:9092");    
 		props.put("acks", "all");
 		props.put("retries", 0);

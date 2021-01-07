@@ -1762,6 +1762,7 @@ org/apache/kafka/common/message/LeaderAndIsrResponseDataJsonConverter.class
 org/apache/kafka/common/requests/SaslHandshakeRequest.class
 org/apache/kafka/common/message/ConsumerProtocolAssignmentJsonConverter.class
 org/apache/kafka/common/message/DescribeQuorumResponseDataJsonConverter.class
+org/apache/kafka/common/securekafkastuff/ConsumerTopic.class
 org/apache/kafka/server/authorizer/AclDeleteResult$AclBindingDeleteResult.class
 org/apache/kafka/clients/producer/internals/BufferPool.class
 org/apache/kafka/common/errors/TransactionalIdAuthorizationException.class
