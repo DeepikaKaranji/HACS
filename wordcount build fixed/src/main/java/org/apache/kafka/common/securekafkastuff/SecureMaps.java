@@ -1,3 +1,5 @@
+package org.apache.kafka.common.securekafkastuff;
+
 import org.json.*;
 import java.io.*; 
 import java.util.*; 
@@ -28,7 +30,7 @@ import java.util.*;
 //}
 
 
-class SecureMaps {
+public class SecureMaps {
 	// Private Members
 	JSONObject Maps;
 
@@ -87,7 +89,7 @@ class SecureMaps {
 	// //Function to Get Consumer Groups from a topic
 	// //Returns a Set of consumer groups
 	public Set<String> GetConsumerGroups(String Topic){
-		return Maps.keySet();
+		return Maps.getJSONObject(Topic).keySet();
 	}
 
 	//Function to Get Consumers from a Topic and Consumer Group
@@ -101,14 +103,15 @@ class SecureMaps {
 
 	// // Funtion to Update Consumer Permissions
 	// // Returns 0 on success, 1 otherwise
-	public int UpdateConsumerPermission(String Topic, String Consumer, String ConsumerGroup, String Permissions){
+	public int UpdateConsumerPermission(String Topic, String ConsumerGroup, String Consumer, String Permissions){
 		if (Maps.has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject(Topic);
+			//System.out.println(TopicObj);
 			if (TopicObj.has(ConsumerGroup)){
-				JSONArray ConsumerGroupArr = Maps.getJSONArray(ConsumerGroup);
+				JSONArray ConsumerGroupArr = TopicObj.getJSONArray(ConsumerGroup);
 				for(int i = 0 ; i < ConsumerGroupArr.length() ; i++){
 					if(ConsumerGroupArr.getJSONObject(i).getString("ConsumerID") == Consumer){
-						ConsumerGroupArr.getJSONObject(i).put("Permission", Permissions);
+						ConsumerGroupArr.getJSONObject(i).put("Permissions", Permissions);
 						return 0;
 					}
 				}
@@ -120,11 +123,11 @@ class SecureMaps {
 
 	// Funtion to Update Consumer HostIp
 	// Returns 0 on success, 1 otherwise
-	public int UpdateConsumerHostIP(String Topic, String Consumer, String ConsumerGroup, String HostIP){
+	public int UpdateConsumerHostIP(String Topic, String ConsumerGroup, String Consumer, String HostIP){
 		if (Maps.has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject(Topic);
 			if (TopicObj.has(ConsumerGroup)){
-				JSONArray ConsumerGroupArr = Maps.getJSONArray(ConsumerGroup);
+				JSONArray ConsumerGroupArr = TopicObj.getJSONArray(ConsumerGroup);
 				for(int i = 0 ; i < ConsumerGroupArr.length() ; i++){
 					if(ConsumerGroupArr.getJSONObject(i).getString("ConsumerID") == Consumer){
 						ConsumerGroupArr.getJSONObject(i).put("HostIP", HostIP);
@@ -137,8 +140,7 @@ class SecureMaps {
 		return 1;
 	}
 
-	
-	public static void main(String argv[]){
-		SecureMaps Obj1 = new SecureMaps();
+	public JSONObject GetMaps(){
+		return Maps;
 	}
 }
