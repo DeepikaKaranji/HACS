@@ -50,9 +50,9 @@ public class App
     }
 }
 */
-
+// /home/dpk/Desktop/Dpk/SEM7/CAPSTONE1/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/securekafkastuff/SecureMaps.java
 package com.kafkastuff.wordcount;
-
+import org.apache.kafka.common.securekafkastuff.SecureMaps;
 import org.apache.storm.Config;
 import java.util.UUID;
 import org.apache.storm.spout.SchemeAsMultiScheme;
@@ -82,7 +82,42 @@ public class App
     public static void main( String[] args ) throws AlreadyAliveException, InterruptedException, org.apache.storm.thrift.TException, java.lang.Exception
     {
         System.out.println( "TOPOLOGY_STARTING" );
+
+
+	//Create map
+
+	SecureMaps SecMapObj = new SecureMaps();
+	SecMapObj.AddTopic("Topic1");
+	SecMapObj.AddConsumerGroup("Topic1", "CG1");
+	SecMapObj.AddConsumerGroup("Topic1", "CG2");
+	SecMapObj.AddConsumer("Topic1", "CG1", "CON1", "111", "*");
+	SecMapObj.AddConsumer("Topic1", "CG1", "CON2", "222", "**");
+	SecMapObj.AddConsumer("Topic1", "CG2", "CON1", "111", "*");
+	SecMapObj.AddConsumer("Topic1", "CG2", "CON2", "222", "**");
+	SecMapObj.UpdateConsumerPermission("Topic1", "CG1", "CON1", "333");
+	SecMapObj.UpdateConsumerHostIP("Topic1", "CG1", "CON1", "***");
+	SecMapObj.UpdateConsumerPermission("Topic1", "CG1", "CON2", "69");
+	SecMapObj.UpdateConsumerHostIP("Topic1", "CG1", "CON2", "*********************************************");
+
+	SecMapObj.AddTopic("Topic2");
+	SecMapObj.AddConsumerGroup("Topic2", "CG1");
+	SecMapObj.AddConsumerGroup("Topic2", "CG2");
+	SecMapObj.AddConsumer("Topic2", "CG1", "CON1", "111", "*");
+	SecMapObj.AddConsumer("Topic2", "CG1", "CON2", "222", "**");
+	SecMapObj.AddConsumer("Topic2", "CG2", "CON1", "111", "*");
+	SecMapObj.AddConsumer("Topic2", "CG2", "CON2", "222", "**");
+	SecMapObj.UpdateConsumerPermission("Topic2", "CG1", "CON1", "333");
+	SecMapObj.UpdateConsumerHostIP("Topic2", "CG1", "CON1", "***");
+	SecMapObj.UpdateConsumerPermission("Topic2", "CG1", "CON2", "69");
+	SecMapObj.UpdateConsumerHostIP("Topic2", "CG1", "CON2", "*********************************************");
+
+	System.out.println(SecMapObj.GetMaps());
+	
+	System.out.println("Config given for topology"); 
+	//Kafka Spout configerations
+
 	System.out.println("Config given for topology");
+
 	String zkConnString = "localhost:2181";
 	System.out.println("Config given for Spout");
 	final TopologyBuilder tp = new TopologyBuilder();
