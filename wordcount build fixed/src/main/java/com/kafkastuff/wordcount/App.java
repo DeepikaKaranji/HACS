@@ -74,8 +74,7 @@ import org.apache.storm.thrift.TException;
 import org.apache.kafka.common.serialization.ByteBufferDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import com.kafkastuff.wordcount.splitter;
-
-
+import org.apache.kafka.common.securekafkastuff.ConsumerTopic;
 
 
 public class App 
@@ -83,6 +82,7 @@ public class App
     public static void main( String[] args ) throws AlreadyAliveException, InterruptedException, org.apache.storm.thrift.TException, java.lang.Exception
     {
         System.out.println( "TOPOLOGY_STARTING" );
+
 
 	//Create map
 
@@ -115,25 +115,42 @@ public class App
 	
 	System.out.println("Config given for topology"); 
 	//Kafka Spout configerations
+
+	System.out.println("Config given for topology");
+
 	String zkConnString = "localhost:2181";
-	//String topic = "words";
 	System.out.println("Config given for Spout");
 	final TopologyBuilder tp = new TopologyBuilder();
 	System.out.println("Empty Topology created");
-	KafkaSpoutConfig<String,String> kafkaSpoutConfig = KafkaSpoutConfig.builder("localhost:9092","StockMarketTopic")
-	.setProp(ConsumerConfig.GROUP_ID_CONFIG, "kafka_spout-" + UUID.randomUUID().toString())
-	.build();
-	KafkaSpout<String,String> kafkaSpoutInput = new KafkaSpout<>(kafkaSpoutConfig);
+	String ConsumerGrp = "StockMarketConsumer"+UUID.randomUUID().toString();
+	String Topic = "StockMarketTopic";
 	
+	
+	ConsumerTopic c = new ConsumerTopic();
+	//System.out.println("Topic exists: "+c.ConsumerTopicPair(ConsumerGrp,Topic));
+	if(c.TopicExists(Topic)){
+		KafkaSpoutConfig<String,String> kafkaSpoutConfig = KafkaSpoutConfig.builder("localhost:9092",Topic)
+		.setProp(ConsumerConfig.GROUP_ID_CONFIG, ConsumerGrp)
+		.build();
+		KafkaSpout<String,String> kafkaSpoutInput = new KafkaSpout<>(kafkaSpoutConfig);
 
-	tp.setSpout("kafka_spout",kafkaSpoutInput, 1);
-	tp.setBolt("sentence-splitter", new splitter(), 1).shuffleGrouping("kafka_spout");
-	System.out.println("Spout set");
+		ConsumerTopic.PairConsumerTopic(ConsumerGrp,Topic);
+		
+		tp.setSpout("kafka_spout",kafkaSpoutInput, 1);
+		tp.setBolt("sentence-splitter", new splitter(), 1).shuffleGrouping("kafka_spout");
+		System.out.println("Spout set");
+		
+		ConsumerTopic c1 = new ConsumerTopic();
+		System.out.println("Verification of static: "+c1.ConsumerTopic);
 
-	//NIMBUS ERRORS HERE
-	LocalCluster localCluster = new LocalCluster();
-	localCluster.submitTopology("stupidtops",new Config(),tp.createTopology());
-	Thread.sleep(30000);
+		//NIMBUS ERRORS HERE
+		LocalCluster localCluster = new LocalCluster();
+		localCluster.submitTopology("stupidtops",new Config(),tp.createTopology());
+		Thread.sleep(30000);
+	}
+	else{
+		System.out.println("Topic doesnt exist!!");
+	}
     }
 
 }
