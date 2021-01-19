@@ -349,6 +349,7 @@ org/apache/kafka/clients/consumer/internals/AbstractCoordinator$HeartbeatThread.
 org/apache/kafka/common/record/DefaultRecordBatch$3.class
 org/apache/kafka/common/message/WriteTxnMarkersRequestDataJsonConverter$WritableTxnMarkerTopicJsonConverter.class
 org/apache/kafka/common/metrics/stats/Percentile.class
+org/apache/kafka/common/securekafkastuff/ReadDeserializer.class
 org/apache/kafka/clients/consumer/internals/SubscriptionState$FetchStates$1.class
 org/apache/kafka/clients/producer/internals/TransactionManager$Priority.class
 com/kafkastuff/wordcount/splitter.class
@@ -605,6 +606,7 @@ org/apache/kafka/common/message/DescribeUserScramCredentialsRequestDataJsonConve
 org/apache/kafka/common/protocol/types/Field$CompactNullableStr.class
 org/apache/kafka/clients/admin/DeleteTopicsResult.class
 org/apache/kafka/common/message/DescribeLogDirsResponseData$DescribeLogDirsResult.class
+org/apache/kafka/common/securekafkastuff/Write.class
 org/apache/kafka/common/utils/Crc32C$Java9ChecksumFactory.class
 org/apache/kafka/common/message/FetchResponseDataJsonConverter$LeaderIdAndEpochJsonConverter.class
 org/apache/kafka/clients/admin/internals/AdminMetadataManager$State.class
@@ -1092,6 +1094,7 @@ org/apache/kafka/common/message/DeleteAclsResponseData$DeleteAclsMatchingAcl.cla
 org/apache/kafka/common/record/AbstractLegacyRecordBatch$BasicLegacyRecordBatch.class
 org/apache/kafka/common/message/AlterPartitionReassignmentsResponseData$ReassignablePartitionResponse.class
 org/apache/kafka/common/Cluster.class
+org/apache/kafka/common/securekafkastuff/Read.class
 org/apache/kafka/common/security/ssl/SslPrincipalMapper$NoMatchingRule.class
 org/apache/kafka/common/message/UpdateMetadataRequestData$UpdateMetadataPartitionState.class
 org/apache/kafka/common/message/OffsetFetchRequestData.class
@@ -1740,6 +1743,7 @@ org/apache/kafka/common/message/UpdateMetadataRequestDataJsonConverter$UpdateMet
 org/apache/kafka/common/message/DescribeConfigsRequestDataJsonConverter$DescribeConfigsResourceJsonConverter.class
 org/apache/kafka/common/serialization/Serde.class
 org/apache/kafka/common/requests/ListGroupsRequest.class
+org/apache/kafka/common/securekafkastuff/ReadSerializer.class
 org/apache/kafka/clients/producer/internals/RecordAccumulator$ReadyCheckResult.class
 org/apache/kafka/common/config/LogLevelConfig.class
 org/apache/kafka/common/message/DeleteRecordsResponseDataJsonConverter.class

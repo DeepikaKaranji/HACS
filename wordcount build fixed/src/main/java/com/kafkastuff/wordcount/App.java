@@ -80,6 +80,8 @@ public class App
 		if(c.TopicExists(Topic)){
 			KafkaSpoutConfig<String,String> kafkaSpoutConfig = KafkaSpoutConfig.builder("localhost:9092",Topic)
 			.setProp(ConsumerConfig.GROUP_ID_CONFIG, ConsumerGrp)
+			.setProp(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer")			
+			.setProp(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.securekafkastuff.ReadDeserializer")
 			.build();
 			KafkaSpout<String,String> kafkaSpoutInput = new KafkaSpout<>(kafkaSpoutConfig);
 
