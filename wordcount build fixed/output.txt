@@ -1,2 +1,0 @@
-Sentence: VALUE99, GROUP1:READ
-Wordmap is: {VALUE99,=1, GROUP1:READ=1}

@@ -4,6 +4,10 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.kafka.common.securekafkastuff.ConsumerTopic;
+import org.apache.kafka.common.securekafkastuff.SecureMaps;
+import java.util.Vector;
+
 
 import org.apache.kafka.clients.producer.Producer;
 //import com.kafkastuff.wordcount.KafkaProducer;
@@ -48,13 +52,13 @@ public class producer {
 		//String topicName = "my-first-topic";
 		
 		System.out.println("Started Producer");
-		String topicName = "StockMarketTopic";
+		String TopicName = "StockMarketTopic";
 		Properties props_1 = new Properties();
 		props_1.put("bootstrap.servers", "localhost:9092"); 
 		//createTestTopic(topicName,1,1,props_1);
 		Topics t = new Topics();
 		//t.updateTopics(props_1);
-		t.createTopic(topicName,1,1,props_1);
+		t.createTopic(TopicName,1,1,props_1);
 		
 		//listGroups(props_1);
 
@@ -72,7 +76,23 @@ public class producer {
 		KafkaProducer<String,String> producer = new KafkaProducer<String,String>(props);
 		producer p = new producer();
 		System.out.println("Before Send");
-		p.sendInfo(producer,topicName);
+
+		SecureMaps SecMapObj = new SecureMaps();
+		SecMapObj.AddTopic(TopicName);
+		
+		Vector<String> ConsumerGroupList = new Vector<String>();
+		ConsumerGroupList.add("StockMarketTopic");
+		//Vector<String> ConsumerGroupList= ConsumerTopic.ConsumerTopicMap.get(TopicName);
+		if(ConsumerGroupList.size() == 0)
+			System.out.println("ConsumerGroupList empty!");
+		else
+			System.out.println("All fine");
+		for(String CgName : ConsumerGroupList){
+			SecMapObj.AddConsumerGroup(TopicName, CgName);
+		}
+		System.out.println(SecMapObj.GetMaps());
+		
+		p.sendInfo(producer,TopicName);
 		System.out.println("MESSAGE SENT");
 		producer.close();
 	}	
