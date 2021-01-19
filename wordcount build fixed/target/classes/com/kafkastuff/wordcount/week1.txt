@@ -1,0 +1,33 @@
+Prototype 1: The producer will create a list of rules, that will be added/updated somewhere. Based on the topic being used, the rules will be added by the producer object. All rules for all consumer groups associated to that topic, will be attached to it. This prototype will focus only on the Kafka side and not on the Storm side.  We will correct this a post Prototype 1. 
+
+Requirement for Prototype 1: We need to know the list of topics created, pair topics with the consumer groups and provide rules for each consumer group, for each topic.
+
+Logic: 
+
+	- Create a list of all topics. Update when new topic is created/deleted.
+	- Create a list of topic:consumer groups associated to that topic. Take care of updates.
+	- These lists have to be accessible to the producer. Producer shouldnt allow access to topics not created, and for those that exist, it should provide access rules for all consumer groups. The access control information for all the consumer groups are added to the messages(We need to add these functionalities to KafkaProducer.java).
+	
+Assumptions
+	- This prototype is also designed assuming that each consumer belongs to one consumer group. This assumption is very basic and can be wrong in most circumstances.
+	- 
+
+Risks
+	- 
+	
+Issues
+	- We thought all of this is done by the broker, but as far as we know we havent been able to identify the broker class.
+	- App.java not working if we use the kafka repo code.
+	
+
+Work:
+
+	- Fix App.java to get kafka+storm to work post build
+	- Create functions to add/update rules
+	- Publish rules based on the topic and consumer group(DEPENDS ON App.java)
+	
+	
+Allocation of responsibilities:
+
+	- Create functions to add/update rules. Come up a template to store rules. => UMA AND DPK
+	- producer.send() and confirm whether we can modify messages. What to make it modifiable. => ASHISH AND ATUL

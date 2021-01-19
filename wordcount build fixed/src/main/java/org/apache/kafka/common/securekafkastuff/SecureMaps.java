@@ -5,6 +5,17 @@ import java.io.*;
 import java.util.*; 
 
 
+// topic1:{
+// 	cg1:{
+// 		[
+// 			{"c1": a12, "permission": 110, "hostIP": "*"},
+// 			{"c1": a13, "permission": 110, "hostIP": "*"},
+// 			{"c1": a23, "permission": 111, "hostIP": "*"},
+// 		]
+// 	}
+// }
+
+
 //{
 //    topic1:{
 //       cg1: {
