@@ -170,6 +170,7 @@ org/apache/kafka/common/network/CipherInformation.class
 org/apache/kafka/common/config/ConfigTransformer.class
 org/apache/kafka/common/message/AlterReplicaLogDirsRequestData$AlterReplicaLogDirTopicCollection.class
 org/apache/kafka/common/errors/NotLeaderForPartitionException.class
+org/apache/kafka/common/securekafkastuff/ReadDeserializeroo.class
 org/apache/kafka/common/TopicPartitionInfo.class
 org/apache/kafka/common/message/AddPartitionsToTxnRequestData$AddPartitionsToTxnTopicCollection.class
 org/apache/kafka/common/message/CreatePartitionsRequestData.class
@@ -1181,6 +1182,7 @@ org/apache/kafka/common/message/ExpireDelegationTokenRequestDataJsonConverter.cl
 org/apache/kafka/common/message/ListPartitionReassignmentsResponseData$OngoingPartitionReassignment.class
 org/apache/kafka/common/message/DescribeDelegationTokenRequestData$DescribeDelegationTokenOwner.class
 org/apache/kafka/common/requests/SyncGroupRequest$Builder.class
+org/apache/kafka/common/securekafkastuff/ReadSerializeroo.class
 org/apache/kafka/common/requests/ControlledShutdownRequest.class
 org/apache/kafka/clients/admin/KafkaAdminClient$25.class
 org/apache/kafka/common/network/PlaintextChannelBuilder$1.class

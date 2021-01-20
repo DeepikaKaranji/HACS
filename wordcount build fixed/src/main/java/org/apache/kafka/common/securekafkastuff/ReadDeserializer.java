@@ -15,17 +15,29 @@ public class ReadDeserializer implements Deserializer<Read> {
 
     @Override
     public Read deserialize(String topic, byte[] data) {
-        try {
-            //return objectMapper.readValue(new String(data, "UTF-8"), TestDto.class);
-            ByteArrayInputStream bis = new ByteArrayInputStream(data);
-    		ObjectInput in = new ObjectInputStream(bis);
-    		return (Read)in.readObject();
-  		} 
-  		catch (Exception e) {
-            //log.error("Unable to deserialize message {}", data, e);
-            System.out.println(e);
-            return null;
-        }
+		try 
+		{
+		    //return objectMapper.readValue(new String(data, "UTF-8"), TestDto.class);
+		        if(data==null)
+		        {
+					return null;
+				}
+				else
+				{
+					ByteArrayInputStream bis = new ByteArrayInputStream(data);
+					System.out.println("BIS: "+bis);
+					ObjectInput in = new ObjectInputStream(bis);
+					return (Read)in.readObject();				
+				}
+		//return null;
+		} 
+	  	catch (Exception e) 
+	  	{
+		    //log.error("Unable to deserialize message {}", data, e);
+		    System.out.println("Data is: "+data);
+		    System.out.println("Error: "+e);
+		    return null;
+		}
     }
 
     @Override

@@ -48,9 +48,9 @@ public class producer {
 			
 			String[] updatedKV = Producer.updateRules("KEY" + Integer.toString(i), "VALUE" + Integer.toString(i));
 			// Read read_obj = new Read((Integer.parseInt(updatedKV[1])));
-			updatedKV[1] = "A test";
+			//updatedKV[1] = "A test";
 			Read readObj = new Read(updatedKV[1]);
-			//Producer.send(new ProducerRecord<String, String>(topicName, updatedKV[0], readObj));
+			//Producer.send(new ProducerRecord<String, String>(topicName, updatedKV[0], updatedKV[1]));
 			Producer.send(new ProducerRecord<String, Read>(topicName, updatedKV[0], readObj));
 		}	
 	}
@@ -77,10 +77,12 @@ public class producer {
 		props.put("linger.ms", 1);   
 		props.put("buffer.memory", 33554432);
 		props.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
-		props.put("value.serializer","org.apache.kafka.common.securekafkastuff.ReadSerializer");
+		//props.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
+		props.put("value.serializer","org.apache.kafka.common.securekafkastuff.ReadSerializeroo");
 		props.put("rules","GROUP1:READ");
 		
 		KafkaProducer<String, Read> producer = new KafkaProducer<String, Read>(props);
+		//KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);
 		producer p = new producer();
 		System.out.println("Before Send");
 

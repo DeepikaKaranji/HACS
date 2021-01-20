@@ -18,21 +18,24 @@ public class ReadSerializer implements Serializer<Read>
     @Override
     public byte[] serialize(String topic, Read read)
     {
-        if (read == null) 
-        {
-            return null;
-        }
         try 
         {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
-			oos.writeObject(read);
+			if(read==null){
+				System.out.println("m here!");
+				oos.writeObject(null);
+			}
+			else{
+				oos.writeObject(read);
+			}
 			oos.close();
 			byte[] b = baos.toByteArray();
 			return b;
         } 
         catch (IOException e) 
         {
+        	System.out.println("There is an IO exception");
 			return new byte[0];
         }
     }
