@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.FileNotFoundException;
+import org.apache.kafka.common.securekafkastuff.Read;
 
 public class splitter extends BaseRichBolt {
 
@@ -27,22 +28,16 @@ public class splitter extends BaseRichBolt {
 
 	@Override
 	public void execute(Tuple input){
-		String sentence = input.getValue(4).toString();
-		//System.out.println("Sentence : "+input.getValue(4));
-		/*
-		try{
-			File file = new File("
-			output.txt");
-			PrintStream stream = new PrintStream(file);
-			System.setOut(stream);
-		}
-		catch (FileNotFoundException ex){
-			System.out.println("File messup");
-		}
-		*/
+		System.out.println("In execute function of spliter\n");
+		Read sentence = Read.class.cast(input.getValue(4));
+		//String sentence = input.getValue(4).toString();
+		//System.out.println("Sentence : " + sentence);
 		if (sentence != null) {
-			System.out.println("Sentence: " + sentence);
+			System.out.println("In IF of splitter\n");
+			System.out.println("Sentence: " + sentence.getData());
+			/*
 			String[] wordArray = sentence.split(" ");
+			System.out.println("WordArray is: " + wordArray); 
 			Map<String, Integer> wordMap = new HashMap<>();
 			for (String word : wordArray) {
 				Integer count = wordMap.get(word);
@@ -53,8 +48,9 @@ public class splitter extends BaseRichBolt {
 				wordMap.put(word, count);
 			}
 			// send the constructed Map to next bolt 
-			System.out.println("Wordmap is: "+wordMap);
-			collector.emit(new Values(wordMap));
+			//System.out.println("Wordmap is: "+wordMap); */
+			//collector.emit(new Values(wordMap));
+			collector.emit(new Values(sentence.getData()));
 		}
 		// acknowledge that the processing of this tuple is finished
 		collector.ack(input);
