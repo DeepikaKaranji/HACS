@@ -25,7 +25,7 @@ import org.apache.kafka.common.serialization.ByteBufferDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import com.kafkastuff.wordcount.splitter;
 import org.apache.kafka.common.securekafkastuff.ConsumerTopic;
-
+import org.apache.storm.kafka.spout.KafkaSpoutConfig.Builder;
 
 public class App 
 {
