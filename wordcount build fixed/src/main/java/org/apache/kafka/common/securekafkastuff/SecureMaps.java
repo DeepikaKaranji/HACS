@@ -150,6 +150,8 @@ public class SecureMaps {
 		}
 		return 1;
 	}
+	
+	//TODO: Write a function to get consumer deets
 
 	public JSONObject GetMaps(){
 		return Maps;

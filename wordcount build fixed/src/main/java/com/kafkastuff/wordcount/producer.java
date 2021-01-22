@@ -25,6 +25,7 @@ import org.apache.kafka.common.securekafkastuff.Topics;
 import org.apache.kafka.common.securekafkastuff.ReadSerializer;
 import org.apache.kafka.common.securekafkastuff.ReadDeserializer;
 import org.apache.kafka.common.securekafkastuff.Read;
+import org.json.*;
 
 public class producer {
 	
@@ -43,16 +44,26 @@ public class producer {
 	}
 	
 	
-	public void sendInfo(KafkaProducer<String, Read> Producer, String topicName){
+	public void sendInfo(KafkaProducer<String, Read> Producer, String topicName, SecureMaps SecMapObj, String ConsumerGroup, String ConsumerID){
 		for(int i = 0;i<100;i++) {
 			
 			String[] updatedKV = Producer.updateRules("KEY" + Integer.toString(i), "VALUE" + Integer.toString(i));
 			// Read read_obj = new Read((Integer.parseInt(updatedKV[1])));
 			//updatedKV[1] = "A test";
-			Read readObj = new Read(updatedKV[1]);
-			//Producer.send(new ProducerRecord<String, String>(topicName, updatedKV[0], updatedKV[1]));
-			Producer.send(new ProducerRecord<String, Read>(topicName, updatedKV[0], readObj));
-		}	
+			
+			// Check for read permission
+			
+			JSONArray Consumers = SecMapObj.GetConsumers(topicName, ConsumerGroup);
+			for (int j = 0 ; j < Consumers.length(); ++j){
+				JSONObject consumer = Consumers.getJSONObject(j);
+				if (consumer.getString("ConsumerID") == ConsumerID && consumer.getString("Permissions") == "100"){
+					Read readObj = new Read(updatedKV[1]);
+					//Producer.send(new ProducerRecord<String, String>(topicName, updatedKV[0], updatedKV[1]));
+					Producer.send(new ProducerRecord<String, Read>(topicName, updatedKV[0], readObj));
+				}	
+				
+			}
+		}
 	}
 
 	public static void main(String[] args) {
@@ -96,12 +107,22 @@ public class producer {
 			System.out.println("ConsumerGroupList empty!");
 		else
 			System.out.println("All fine");
+		//String ConsumerGroup
+		
+		//TODO: ConsumerID needs to change because of single consumer group and consumer
+		String Consumer = "Consumer1";
 		for(String CgName : ConsumerGroupList){
 			SecMapObj.AddConsumerGroup(TopicName, CgName);
+			SecMapObj.AddConsumer(TopicName, CgName, Consumer, "100", "");
+			p.sendInfo(producer, TopicName, SecMapObj, CgName, Consumer);
 		}
-		System.out.println(SecMapObj.GetMaps());
+		//System.out.println(SecMapObj.GetMaps());
 		
-		p.sendInfo(producer,TopicName);
+		// Add consumer to group with rules into SecureMaps
+
+		
+		
+
 		System.out.println("MESSAGE SENT");
 		producer.close();
 	}	
