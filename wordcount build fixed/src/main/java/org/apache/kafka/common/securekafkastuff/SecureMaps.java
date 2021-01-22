@@ -152,6 +152,15 @@ public class SecureMaps {
 	}
 	
 	//TODO: Write a function to get consumer deets
+	
+	public int CheckPermission(String Topic, String ConsumerGroup, String ConsumerID, String Permission){
+		JSONArray Consumers = GetConsumers(Topic, ConsumerGroup);
+			for (int j = 0 ; j < Consumers.length(); ++j){
+				JSONObject consumer = Consumers.getJSONObject(j);
+				if (consumer.getString("ConsumerID") == ConsumerID && consumer.getString("Permissions") == Permission) return 0;
+			}
+			return 1;
+	}
 
 	public JSONObject GetMaps(){
 		return Maps;

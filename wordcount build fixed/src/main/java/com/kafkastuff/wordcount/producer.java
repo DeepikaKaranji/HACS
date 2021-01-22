@@ -52,17 +52,13 @@ public class producer {
 			//updatedKV[1] = "A test";
 			
 			// Check for read permission
-			
-			JSONArray Consumers = SecMapObj.GetConsumers(topicName, ConsumerGroup);
-			for (int j = 0 ; j < Consumers.length(); ++j){
-				JSONObject consumer = Consumers.getJSONObject(j);
-				if (consumer.getString("ConsumerID") == ConsumerID && consumer.getString("Permissions") == "100"){
-					Read readObj = new Read(updatedKV[1]);
-					//Producer.send(new ProducerRecord<String, String>(topicName, updatedKV[0], updatedKV[1]));
-					Producer.send(new ProducerRecord<String, Read>(topicName, updatedKV[0], readObj));
-				}	
+		
+			if (SecMapObj.CheckPermission(topicName, ConsumerGroup, ConsumerID, "100") == 0){
+				Read readObj = new Read(updatedKV[1]);
+				//Producer.send(new ProducerRecord<String, String>(topicName, updatedKV[0], updatedKV[1]));
+				Producer.send(new ProducerRecord<String, Read>(topicName, updatedKV[0], readObj));
+			}	
 				
-			}
 		}
 	}
 
