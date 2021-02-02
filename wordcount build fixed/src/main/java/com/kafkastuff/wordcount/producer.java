@@ -26,17 +26,20 @@ import org.apache.kafka.common.securekafkastuff.ReadSerializer;
 import org.apache.kafka.common.securekafkastuff.ReadDeserializer;
 import org.apache.kafka.common.securekafkastuff.Read;
 import org.json.*;
+import java.util.Random;
+
 
 public class producer {
 	
 	private static final Logger logger = LogManager.getLogger(producer.class);
+	
+	private String[] stocks = {"GOOGL","AMZN","AAPL","TSLA","TWTR"};
 	
 	public static void listGroups(Properties properties) {
 		//LOG.info("Creating topic {}", topic);
 		try (AdminClient adminClient = AdminClient.create(properties)) {
 			ListConsumerGroupsResult listGroups = adminClient.listConsumerGroups();
 			List<String> groupIds = listGroups.all().get().stream().map(s -> s.groupId()).collect(Collectors.toList()); 
-			System.out.println("Group IDs: "+groupIds);
 		} catch (Exception e) {
 			e.printStackTrace();
 			//fail("Create test topic : " + topic + " failed, " + e.getMessage());
@@ -46,17 +49,12 @@ public class producer {
 	
 	public void sendInfo(KafkaProducer<String, Read> Producer, String topicName, SecureMaps SecMapObj, String ConsumerGroup, String ConsumerID){
 		for(int i = 0;i<100;i++) {
-			
-			String[] updatedKV = Producer.updateRules("KEY" + Integer.toString(i), "VALUE" + Integer.toString(i));
-			// Read read_obj = new Read((Integer.parseInt(updatedKV[1])));
-			//updatedKV[1] = "A test";
-			
-			// Check for read permission
-		
+			int rnd = new Random().nextInt(stocks.length);
+    			String key = stocks[rnd];
+    			String value = Double.toString(new Random().nextDouble() * 1000.0);
 			if (SecMapObj.CheckPermission(topicName, ConsumerGroup, ConsumerID, "100") == 0){
-				Read readObj = new Read(updatedKV[1]);
-				//Producer.send(new ProducerRecord<String, String>(topicName, updatedKV[0], updatedKV[1]));
-				Producer.send(new ProducerRecord<String, Read>(topicName, updatedKV[0], readObj));
+				Read readObj = new Read(key+": "+value);
+				Producer.send(new ProducerRecord<String, Read>(topicName, key, readObj));
 			}	
 				
 		}

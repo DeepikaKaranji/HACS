@@ -1,0 +1,10 @@
+The previous prototype focused on creating a solution to test the feasability of the project. The current set of things we have included:
+	- A mechanism to monitor the topics and consumer groups
+	- Provided functionality to add rules for each topic consumer group pair
+	- Encapsulated the message as a rule object and sent it across.
+	
+The direction for the next prototype can focus on one of the two things:
+
+	- Addressing a specific scenario and performing query processing based on the rules provided. We want to address a specific scenario because the rules per scenario may be diferent and to understand the semantics of the rules may be difficult. The biggest demerit with this is that it makes the rule handelling very specififc and may not fit use cases outside what is considered.
+	- Make prototype 1 more robust. This would involve adding mechanisms to have many producers, consumer groups, syncing rule updates with changes in consumer groups/producer/topic, coming up with a generic class to represent tuples for generic cases and modelling the tool to be more performance worthy.
+	 

@@ -116,7 +116,7 @@ public class SecureMaps {
 	// // Returns 0 on success, 1 otherwise
 	public int UpdateConsumerPermission(String Topic, String ConsumerGroup, String Consumer, String Permissions){
 		if (Maps.has(Topic)){
-			JSONObject TopicObj = Maps.getJSONObject(Topic);
+			JSONObject TopicObj = Maps.getJSONObject(Topic);	
 			//System.out.println(TopicObj);
 			if (TopicObj.has(ConsumerGroup)){
 				JSONArray ConsumerGroupArr = TopicObj.getJSONArray(ConsumerGroup);

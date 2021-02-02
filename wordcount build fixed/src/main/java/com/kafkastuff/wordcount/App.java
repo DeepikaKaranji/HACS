@@ -67,7 +67,7 @@ public class App
 
 			//NIMBUS ERRORS HERE
 			LocalCluster localCluster = new LocalCluster();
-			localCluster.submitTopology("stupidtops",new Config(),tp.createTopology());
+			localCluster.submitTopology("Stocktopology",new Config(),tp.createTopology());
 			Thread.sleep(30000);
 		}
 		else{

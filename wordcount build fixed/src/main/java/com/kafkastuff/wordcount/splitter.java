@@ -11,8 +11,10 @@ import org.apache.storm.tuple.Values;
 import java.util.HashMap;
 import java.util.Map;
 
-import java.io.File;
+import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;
+import java.io.BufferedWriter;
+
 import java.io.PrintStream;
 import java.io.FileNotFoundException;
 import org.apache.kafka.common.securekafkastuff.Read;
@@ -33,26 +35,17 @@ public class splitter extends BaseRichBolt {
 		//String sentence = input.getValue(4).toString();
 		//System.out.println("Sentence : " + sentence);
 		if (sentence != null) {
-			System.out.println("In IF of splitter\n");
-			System.out.println("Sentence: " + sentence.getData());
-			/*
-			String[] wordArray = sentence.split(" ");
-			System.out.println("WordArray is: " + wordArray); 
-			Map<String, Integer> wordMap = new HashMap<>();
-			for (String word : wordArray) {
-				Integer count = wordMap.get(word);
-				if (count == null) {
-					count = 0;
-				}
-				count++;
-				wordMap.put(word, count);
+			//System.out.println(sentence.getData());
+			try {
+				BufferedWriter fObj = new BufferedWriter(new FileWriter("output.txt",true));
+				fObj.write(sentence.getData()+"\n");
+				fObj.close();
+			} 
+			catch (IOException e) {
+				e.printStackTrace();
 			}
-			// send the constructed Map to next bolt 
-			//System.out.println("Wordmap is: "+wordMap); */
-			//collector.emit(new Values(wordMap));
 			collector.emit(new Values(sentence.getData()));
 		}
-		// acknowledge that the processing of this tuple is finished
 		collector.ack(input);
 	}
 
