@@ -1,0 +1,49 @@
+=================================================================
+Read.java is sending access control info and imposing it.
+
+enacpsulator=>imposer(retrieve data ,schema and acc control info, store it in private var and exectue the impose function written by the developer.)
+
+ENCAPSULATOR CLASS STRUCTURE
+============================
+
+class encapsulator{
+	private accControl;
+	private data;
+	private schema;
+	
+	encapsulator(accControl,data){
+		schema = schema;
+		accControl = accControl;
+		data = data;
+	}
+	
+	public getterAcc(){
+		return accControl;
+	}
+	
+	public getterSchema(){
+		return schema;
+	}
+	public getterData(){
+		return data;
+	}
+}
+
+IMPOSER CLASS STRUCTURE
+=======================
+
+Read we will create a private final variable and set the value of the variable using getterData() in the constructor itself. We then add a getter function for this variable. Here imposer is not used. This is using Liskov.
+
+Write will need a public getter and manipulator for data.
+
+
+class imposer{//Interface
+	private accControl;
+	private data;
+	private schema;
+	
+	imposer(encapsulator e){
+		accControl,data,schema = e.getter()
+	}		
+}
+
