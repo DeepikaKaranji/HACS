@@ -506,6 +506,7 @@
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/errors/PrincipalDeserializationException.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/protocol/Message.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/security/token/delegation/internals/DelegationTokenCredentialCallback.java
+/home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/securekafkastuff/encapSerializer.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/clients/producer/UniformStickyPartitioner.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/requests/SyncGroupRequest.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/clients/ConnectionState.java
@@ -693,6 +694,7 @@
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/errors/InterruptException.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/errors/ProducerFencedException.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/message/VoteResponseDataJsonConverter.java
+/home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/securekafkastuff/encapDeserializer.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/requests/LeaveGroupRequest.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/message/LeaderChangeMessageJsonConverter.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/errors/FencedLeaderEpochException.java
@@ -887,6 +889,7 @@
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/clients/consumer/internals/AbstractStickyAssignor.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/protocol/Protocol.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/message/LeaveGroupRequestData.java
+/home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/securekafkastuff/imposer.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/errors/InconsistentGroupProtocolException.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/message/SaslAuthenticateResponseData.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/MetricName.java
@@ -929,6 +932,7 @@
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/errors/CoordinatorNotAvailableException.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/serialization/IntegerSerializer.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/network/ByteBufferSend.java
+/home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/securekafkastuff/encapsulator.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/message/ControlledShutdownResponseDataJsonConverter.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/message/DescribeQuorumRequestDataJsonConverter.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/security/auth/AuthenticateCallbackHandler.java
@@ -1047,6 +1051,7 @@
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/message/DeleteAclsRequestData.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/feature/BaseVersionRange.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/clients/admin/DeleteRecordsResult.java
+/home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/securekafkastuff/readImposer.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/common/requests/FetchSnapshotResponse.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/clients/admin/DescribeClusterOptions.java
 /home/atul/Secure-Kafka-Storm/wordcount build fixed/src/main/java/org/apache/kafka/clients/consumer/internals/ConsumerMetadata.java

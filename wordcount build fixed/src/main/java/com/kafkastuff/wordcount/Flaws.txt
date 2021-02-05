@@ -1,0 +1,6 @@
+============FLAWS================
+
+1. how to make imposer compulsory?
+2. how to regulate imposer creation? is it needed?
+3. how to prevent fellow hacker from reading source code and manipulating stuff?
+
