@@ -27,7 +27,7 @@ import org.apache.kafka.common.securekafkastuff.ReadDeserializer;
 import org.apache.kafka.common.securekafkastuff.Read;
 import org.json.*;
 import java.util.Random;
-
+import org.apache.kafka.common.securekafkastuff.encapsulator;
 
 public class producer {
 	
@@ -47,27 +47,29 @@ public class producer {
 	}
 	
 	
-	public void sendInfo(KafkaProducer<String, Read> Producer, String topicName, SecureMaps SecMapObj, String ConsumerGroup, String ConsumerID){
+	public void sendInfo(KafkaProducer<String, encapsulator> Producer, String topicName, SecureMaps SecMapObj, String ConsumerGroup, String ConsumerID){
 		for(int i = 0;i<100;i++) {
 			int rnd = new Random().nextInt(stocks.length);
     			String key = stocks[rnd];
     			String value = Double.toString(new Random().nextDouble() * 1000.0);
+    			encapsulator e = new encapsulator("READ",value,"Stock Name,StockPrice");
+    			Producer.send(new ProducerRecord<String, encapsulator>(topicName, key, e));
+    			/*
 			if (SecMapObj.CheckPermission(topicName, ConsumerGroup, ConsumerID, "100") == 0){
 				Read readObj = new Read(key+": "+value);
 				Producer.send(new ProducerRecord<String, Read>(topicName, key, readObj));
-			}	
+			}
+			*/	
 				
 		}
 	}
 
 	public static void main(String[] args) {
-		//String topicName = "my-first-topic";
 		
 		System.out.println("Started Producer");
 		String TopicName = "StockMarketTopic";
 		Properties props_1 = new Properties();
 		props_1.put("bootstrap.servers", "localhost:9092"); 
-		//createTestTopic(topicName,1,1,props_1);
 		Topics t = new Topics();
 		//t.updateTopics(props_1);
 		t.createTopic(TopicName,1,1,props_1);
@@ -83,25 +85,30 @@ public class producer {
 		props.put("buffer.memory", 33554432);
 		props.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
 		//props.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
-		props.put("value.serializer","org.apache.kafka.common.securekafkastuff.ReadSerializeroo");
+		//props.put("value.serializer","org.apache.kafka.common.securekafkastuff.ReadSerializeroo");
+		props.put("value.serializer","org.apache.kafka.common.securekafkastuff.encapSerializer");
 		props.put("rules","GROUP1:READ");
 		
-		KafkaProducer<String, Read> producer = new KafkaProducer<String, Read>(props);
+		KafkaProducer<String, encapsulator> producer = new KafkaProducer<String, encapsulator>(props);
 		//KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);
 		producer p = new producer();
-		System.out.println("Before Send");
+
 
 		SecureMaps SecMapObj = new SecureMaps();
 		SecMapObj.AddTopic(TopicName);
 		
+		
+		
+		//What is this? Isnt the ConsumerGroupList supposed to be taken from ConsumerTopic?
+		//TODO: Connect this part of the code with ConsumerTopic asap.
 		Vector<String> ConsumerGroupList = new Vector<String>();
 		ConsumerGroupList.add("StockMarketTopic");
-		//Vector<String> ConsumerGroupList= ConsumerTopic.ConsumerTopicMap.get(TopicName);
 		if(ConsumerGroupList.size() == 0)
 			System.out.println("ConsumerGroupList empty!");
 		else
 			System.out.println("All fine");
-		//String ConsumerGroup
+			
+			
 		
 		//TODO: ConsumerID needs to change because of single consumer group and consumer
 		String Consumer = "Consumer1";
@@ -110,9 +117,7 @@ public class producer {
 			SecMapObj.AddConsumer(TopicName, CgName, Consumer, "100", "");
 			p.sendInfo(producer, TopicName, SecMapObj, CgName, Consumer);
 		}
-		//System.out.println(SecMapObj.GetMaps());
-		
-		// Add consumer to group with rules into SecureMaps
+
 
 		
 		

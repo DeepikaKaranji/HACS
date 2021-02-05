@@ -11,6 +11,8 @@ class encapsulator{
 	private data;
 	private schema;
 	
+	
+	
 	encapsulator(accControl,data){
 		schema = schema;
 		accControl = accControl;
@@ -46,4 +48,3 @@ class imposer{//Interface
 		accControl,data,schema = e.getter()
 	}		
 }
-

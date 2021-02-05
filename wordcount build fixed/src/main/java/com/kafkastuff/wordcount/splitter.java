@@ -17,7 +17,10 @@ import java.io.BufferedWriter;
 
 import java.io.PrintStream;
 import java.io.FileNotFoundException;
-import org.apache.kafka.common.securekafkastuff.Read;
+//import org.apache.kafka.common.securekafkastuff.Read;
+import org.apache.kafka.common.securekafkastuff.encapsulator;
+import org.apache.kafka.common.securekafkastuff.imposer;
+import org.apache.kafka.common.securekafkastuff.readImposer;
 
 public class splitter extends BaseRichBolt {
 
@@ -31,9 +34,27 @@ public class splitter extends BaseRichBolt {
 	@Override
 	public void execute(Tuple input){
 		System.out.println("In execute function of spliter\n");
-		Read sentence = Read.class.cast(input.getValue(4));
+		encapsulator sentence = encapsulator.class.cast(input.getValue(4));
+		
+		imposer r = new readImposer(sentence);
+		
+		String data = r.read();
+		if(data!=null){
+			try {
+				BufferedWriter fObj = new BufferedWriter(new FileWriter("output.txt",true));
+				fObj.write(data+"\n");
+				fObj.close();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			collector.emit(new Values(data));
+		}
+		
+		
 		//String sentence = input.getValue(4).toString();
 		//System.out.println("Sentence : " + sentence);
+		/*
 		if (sentence != null) {
 			//System.out.println(sentence.getData());
 			try {
@@ -46,6 +67,7 @@ public class splitter extends BaseRichBolt {
 			}
 			collector.emit(new Values(sentence.getData()));
 		}
+		*/
 		collector.ack(input);
 	}
 

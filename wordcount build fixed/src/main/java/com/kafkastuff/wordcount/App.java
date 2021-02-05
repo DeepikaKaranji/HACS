@@ -1,6 +1,6 @@
 package com.kafkastuff.wordcount;
 import org.apache.kafka.common.securekafkastuff.SecureMaps;
-import org.apache.kafka.common.securekafkastuff.Read;
+//import org.apache.kafka.common.securekafkastuff.Read;
 import org.apache.storm.Config;
 import java.util.UUID;
 import java.util.Vector;
@@ -51,7 +51,8 @@ public class App
 			KafkaSpoutConfig<String, String> kafkaSpoutConfig = KafkaSpoutConfig.builder("localhost:9092",Topic)
 			.setProp(ConsumerConfig.GROUP_ID_CONFIG, ConsumerGrp)
 			.setProp(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer")
-			.setProp(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.securekafkastuff.ReadDeserializeroo")	
+			//.setProp(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.securekafkastuff.ReadDeserializeroo")	
+			.setProp(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.securekafkastuff.encapDeserializer")
 			.build();
 			KafkaSpout<String,String> kafkaSpoutInput = new KafkaSpout<>(kafkaSpoutConfig);
 			//KafkaSpout<String, Read> kafkaSpoutInput = new KafkaSpout<>(kafkaSpoutConfig);
@@ -61,9 +62,6 @@ public class App
 			tp.setSpout("kafka_spout",kafkaSpoutInput, 1);
 			tp.setBolt("sentence-splitter", new splitter(), 1).shuffleGrouping("kafka_spout");
 			System.out.println("Spout set");
-			
-			ConsumerTopic c1 = new ConsumerTopic();
-			System.out.println("Verification of static: "+c1.ConsumerTopicMap);
 
 			//NIMBUS ERRORS HERE
 			LocalCluster localCluster = new LocalCluster();

@@ -640,6 +640,7 @@ org/apache/kafka/common/config/ConfigTransformer$ConfigVariable.class
 org/apache/kafka/common/network/KafkaChannel$ChannelMuteEvent.class
 org/apache/kafka/common/message/LeaveGroupResponseData$MemberResponse.class
 org/apache/kafka/common/message/AlterUserScramCredentialsResponseData.class
+org/apache/kafka/common/securekafkastuff/readImposer.class
 org/apache/kafka/clients/admin/AlterReplicaLogDirsResult.class
 org/apache/kafka/common/requests/DescribeDelegationTokenRequest$Builder.class
 org/apache/kafka/common/serialization/Serdes$BytesSerde.class
@@ -882,6 +883,7 @@ org/apache/kafka/common/record/FileLogInputStream.class
 org/apache/kafka/common/serialization/Serdes$StringSerde.class
 org/apache/kafka/common/protocol/types/Type$3.class
 org/apache/kafka/server/authorizer/AclDeleteResult.class
+org/apache/kafka/common/securekafkastuff/imposer.class
 org/apache/kafka/clients/admin/KafkaAdminClient$24$1.class
 org/apache/kafka/common/errors/InvalidFetchSizeException.class
 org/apache/kafka/clients/consumer/ConsumerRecord.class
@@ -1044,6 +1046,7 @@ org/apache/kafka/common/message/WriteTxnMarkersRequestData$WritableTxnMarker.cla
 org/apache/kafka/common/cache/LRUCache.class
 org/apache/kafka/common/message/OffsetCommitResponseData.class
 org/apache/kafka/common/utils/Crc32C$1.class
+org/apache/kafka/common/securekafkastuff/encapsulator.class
 org/apache/kafka/common/requests/RequestHeader.class
 org/apache/kafka/common/message/BeginQuorumEpochRequestDataJsonConverter$PartitionDataJsonConverter.class
 org/apache/kafka/common/message/DeleteTopicsResponseData$DeletableTopicResultCollection.class
@@ -1923,6 +1926,7 @@ org/apache/kafka/common/protocol/types/TaggedFields.class
 org/apache/kafka/common/message/CreateDelegationTokenResponseDataJsonConverter.class
 org/apache/kafka/common/utils/Exit$1.class
 org/apache/kafka/clients/consumer/internals/ConsumerCoordinator$OffsetCommitResponseHandler.class
+org/apache/kafka/common/securekafkastuff/encapSerializer.class
 org/apache/kafka/common/message/ListGroupsResponseDataJsonConverter.class
 org/apache/kafka/clients/consumer/internals/Fetcher$5.class
 org/apache/kafka/common/metrics/stats/Percentiles.class
@@ -1986,6 +1990,7 @@ org/apache/kafka/common/message/JoinGroupResponseData.class
 org/apache/kafka/common/requests/DescribeUserScramCredentialsRequest$Builder.class
 org/apache/kafka/common/message/DescribeConfigsRequestData$DescribeConfigsResource.class
 org/apache/kafka/common/message/FetchSnapshotRequestDataJsonConverter$TopicSnapshotJsonConverter.class
+org/apache/kafka/common/securekafkastuff/encapDeserializer.class
 org/apache/kafka/common/protocol/types/Type$12.class
 org/apache/kafka/common/requests/DescribeLogDirsRequest$Builder.class
 org/apache/kafka/common/message/ConsumerProtocolSubscription$TopicPartition.class
