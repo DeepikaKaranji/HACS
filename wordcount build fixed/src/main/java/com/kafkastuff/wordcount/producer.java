@@ -112,6 +112,7 @@ public class producer {
 		
 		//TODO: ConsumerID needs to change because of single consumer group and consumer
 		String Consumer = "Consumer1";
+		//Polling exists
 		for(String CgName : ConsumerGroupList){
 			SecMapObj.AddConsumerGroup(TopicName, CgName);
 			SecMapObj.AddConsumer(TopicName, CgName, Consumer, "100", "");

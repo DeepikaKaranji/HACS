@@ -47,6 +47,7 @@ public class App
 		
 		ConsumerTopic c = new ConsumerTopic();
 		//System.out.println("Topic exists: "+c.ConsumerTopicPair(ConsumerGrp,Topic));
+		//Poll
 		if(c.TopicExists(Topic)){
 			KafkaSpoutConfig<String, String> kafkaSpoutConfig = KafkaSpoutConfig.builder("localhost:9092",Topic)
 			.setProp(ConsumerConfig.GROUP_ID_CONFIG, ConsumerGrp)
@@ -57,6 +58,7 @@ public class App
 			KafkaSpout<String,String> kafkaSpoutInput = new KafkaSpout<>(kafkaSpoutConfig);
 			//KafkaSpout<String, Read> kafkaSpoutInput = new KafkaSpout<>(kafkaSpoutConfig);
 	
+			//Risk of failure
 			ConsumerTopic.PairConsumerTopic(ConsumerGrp,Topic);
 			
 			tp.setSpout("kafka_spout",kafkaSpoutInput, 1);
