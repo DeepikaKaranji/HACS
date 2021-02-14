@@ -1,5 +1,6 @@
 package org.apache.kafka.common.securekafkastuff;
 
+import org.apache.kafka.common.cache.SynchronizedCache;
 import org.json.*;
 import java.io.*; 
 import java.util.*; 
@@ -55,7 +56,7 @@ public class SecureMaps {
 	// Function to Insert Topic into Maps
 	
 	// Returns 0 on success, 1 otherwise
-	public int AddTopic(String Topic){
+	public synchronized int AddTopic(String Topic){
 		if (!Maps.has(Topic)){
 			Maps.put(Topic, new JSONObject());
 			return 0;
@@ -65,7 +66,7 @@ public class SecureMaps {
 
 	// //Funtion to Insert Consumer Group
 	// //Returns 0 on success, 1 otherwise
-	public int AddConsumerGroup(String Topic, String ConsumerGroup){
+	public synchronized int AddConsumerGroup(String Topic, String ConsumerGroup){
 		if (Maps.has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject(Topic);
 			if (!TopicObj.has(ConsumerGroup)){
@@ -79,7 +80,7 @@ public class SecureMaps {
 
 	// //Funtion to Insert Consumer Details
 	// //Returns 0 on success, 1 otherwise
-	public int AddConsumer(String Topic, String ConsumerGroup, String ConsumerID, String Permissions, String HostIP){
+	public synchronized int AddConsumer(String Topic, String ConsumerGroup, String ConsumerID, String Permissions, String HostIP){
 		if (Maps.has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject(Topic);
 			if (TopicObj.has(ConsumerGroup)){
@@ -114,7 +115,7 @@ public class SecureMaps {
 
 	// // Funtion to Update Consumer Permissions
 	// // Returns 0 on success, 1 otherwise
-	public int UpdateConsumerPermission(String Topic, String ConsumerGroup, String Consumer, String Permissions){
+	public synchronized int UpdateConsumerPermission(String Topic, String ConsumerGroup, String Consumer, String Permissions){
 		if (Maps.has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject(Topic);	
 			//System.out.println(TopicObj);
@@ -134,7 +135,7 @@ public class SecureMaps {
 
 	// Funtion to Update Consumer HostIp
 	// Returns 0 on success, 1 otherwise
-	public int UpdateConsumerHostIP(String Topic, String ConsumerGroup, String Consumer, String HostIP){
+	public synchronized int UpdateConsumerHostIP(String Topic, String ConsumerGroup, String Consumer, String HostIP){
 		if (Maps.has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject(Topic);
 			if (TopicObj.has(ConsumerGroup)){
