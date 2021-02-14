@@ -48,7 +48,7 @@ class PunctAdmin{
 	
 	authentication(username,passwd){
 		if(username=="XYZ" && passwd=="ABC"){
-			return sucess
+			return success
 		}
 		return fail 
 	}
@@ -85,14 +85,18 @@ class PunctAdmin{
 		
 	}
 }
+======================================
 
-class AdminDemo{
+class AdminDemoCreateTopic{
 
 	//Complete authentication before going for demo.
 	PunctAdmin p;//Singleton
 	main(){ //If authentication is a success
-		p.createTopic(<TopicName>);
-		p.createConsumerGrp(<consumerGrp>);//Order doesnt matter here because they can be create independently
+		p.createTopic(<TopicName_1>);
+		//p.createTopic(<TopicName_2>)
+		
+		//p.deleteTopic();
+		//p.createConsumerGrp(<consumerGrp>);//Order doesnt matter here because they can be create independently
 		
 		
 		
@@ -100,5 +104,12 @@ class AdminDemo{
 		
 	}
 }
-=======================================                                                                                                         
 
+class AdminDemoDeleteTopic{
+	main(){
+		while
+		p.deleteTopic(<TopicName_1>)
+		//p.deleteTopic(<TopicName_2>)
+	}
+}
+=======================================                                                                                                         

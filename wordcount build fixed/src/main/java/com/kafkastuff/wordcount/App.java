@@ -31,9 +31,8 @@ public class App
 {
     public static void main( String[] args ) throws AlreadyAliveException, InterruptedException, org.apache.storm.thrift.TException, java.lang.Exception
     {
-        System.out.println( "TOPOLOGY_STARTING" );		
+        	System.out.println( "TOPOLOGY_STARTING" );		
 		System.out.println("Config given for topology"); 
-		//Kafka Spout configerations
 
 		System.out.println("Config given for topology");
 
@@ -41,8 +40,10 @@ public class App
 		System.out.println("Config given for Spout");
 		final TopologyBuilder tp = new TopologyBuilder();
 		System.out.println("Empty Topology created");
-		String ConsumerGrp = "StockMarketConsumer"+UUID.randomUUID().toString();
-		String Topic = "StockMarketTopic";
+//		String ConsumerGrp = "StockMarketConsumer"+UUID.randomUUID().toString();
+
+		String ConsumerGrp = "StockMarketGroup";
+		String Topic = "StockMarket";
 		
 		
 		ConsumerTopic c = new ConsumerTopic();
