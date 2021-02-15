@@ -31,9 +31,8 @@ public class App
 {
     public static void main( String[] args ) throws AlreadyAliveException, InterruptedException, org.apache.storm.thrift.TException, java.lang.Exception
     {
-        System.out.println( "TOPOLOGY_STARTING" );		
+        	System.out.println( "TOPOLOGY_STARTING" );		
 		System.out.println("Config given for topology"); 
-		//Kafka Spout configerations
 
 		System.out.println("Config given for topology");
 
@@ -41,12 +40,15 @@ public class App
 		System.out.println("Config given for Spout");
 		final TopologyBuilder tp = new TopologyBuilder();
 		System.out.println("Empty Topology created");
-		String ConsumerGrp = "StockMarketConsumer"+UUID.randomUUID().toString();
-		String Topic = "StockMarketTopic";
+//		String ConsumerGrp = "StockMarketConsumer"+UUID.randomUUID().toString();
+
+		String ConsumerGrp = "StockMarketGroup";
+		String Topic = "StockMarket";
 		
 		
 		ConsumerTopic c = new ConsumerTopic();
 		//System.out.println("Topic exists: "+c.ConsumerTopicPair(ConsumerGrp,Topic));
+		//Poll
 		if(c.TopicExists(Topic)){
 			KafkaSpoutConfig<String, String> kafkaSpoutConfig = KafkaSpoutConfig.builder("localhost:9092",Topic)
 			.setProp(ConsumerConfig.GROUP_ID_CONFIG, ConsumerGrp)
@@ -57,6 +59,7 @@ public class App
 			KafkaSpout<String,String> kafkaSpoutInput = new KafkaSpout<>(kafkaSpoutConfig);
 			//KafkaSpout<String, Read> kafkaSpoutInput = new KafkaSpout<>(kafkaSpoutConfig);
 	
+			//Risk of failure
 			ConsumerTopic.PairConsumerTopic(ConsumerGrp,Topic);
 			
 			tp.setSpout("kafka_spout",kafkaSpoutInput, 1);

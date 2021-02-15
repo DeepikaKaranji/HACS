@@ -29,7 +29,8 @@ public class Topics{
 		return TopicList;
 	}
 	
-	public void createTopic(String topic, int numberOfPartitions, int replicationFactor, Properties properties) {
+	public Boolean createTopic(String topic, int numberOfPartitions, int replicationFactor, Properties properties) {
+		Boolean output = false;
 		try (AdminClient adminClient = AdminClient.create(properties)) {
 			ListTopicsResult listTopics = adminClient.listTopics();
 			Set<String> names = listTopics.names().get();
@@ -39,7 +40,9 @@ public class Topics{
 				NewTopic topicObj = new NewTopic(topic, numberOfPartitions, (short) replicationFactor);
 				adminClient.createTopics(Collections.singleton(topicObj)).all().get();
 				TopicList.put(topic,true);
-				System.out.println("Added "+topic+" in "+TopicList);
+				//System.out.println("Added "+topic+" in "+TopicList);
+				output = true;
+				
 			}
 			else{
 				System.out.println("==============Topic already existing==============");
@@ -48,9 +51,11 @@ public class Topics{
 			e.printStackTrace();
 			//fail("Create test topic : " + topic + " failed, " + e.getMessage());
 		}
+		return output;
 	}
 	
-	public void deleteTopic(String topic,Properties properties){
+	public Boolean deleteTopic(String topic,Properties properties){
+		Boolean output = false;
 		try (AdminClient adminClient = AdminClient.create(properties)) {
 			ListTopicsResult listTopics = adminClient.listTopics();
 			Set<String> names = listTopics.names().get();
@@ -59,7 +64,8 @@ public class Topics{
 				//NewTopic topicObj = new NewTopic(topic, numberOfPartitions, (short) replicationFactor);
 				adminClient.deleteTopics(Collections.singleton(topic));
 				TopicList.put(topic,false);
-				System.out.println("Removed "+topic+" in "+TopicList);
+				output = true;
+				//System.out.println("Removed "+topic+" in "+TopicList);
 			}
 			else{
 				System.out.println("==============Topic not existing==============");
@@ -67,7 +73,8 @@ public class Topics{
 		} catch (Exception e) {
 			e.printStackTrace();
 			//fail("Create test topic : " + topic + " failed, " + e.getMessage());
-		}		
+		}
+		return output;	
 	}
 	
 	

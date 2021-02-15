@@ -1,8 +1,24 @@
 package org.apache.kafka.common.securekafkastuff;
 
 import org.json.*;
-import java.io.*; 
-import java.util.*; 
+import java.io.*;
+import java.util.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+//import org.json.simple.JSONObject;
+//import org.json.simple.JSONArray;
+
+
+
+// topic1:{
+// 	cg1:{
+//		[
+//			{"permission":""}
+//		]
+// 	}
+// }
+
+
 
 
 // topic1:{
@@ -41,13 +57,12 @@ import java.util.*;
 //}
 
 
-public class SecureMaps {
-	// Private Members
-	JSONObject Maps;
+public class SecureMaps{
+	
+	//We read from the json file and then store it into maps.
 
-	//Public Members
+	public static JSONObject Maps;
 
-	//Constructor to initialize Maps
 	public SecureMaps(){
 		Maps = new JSONObject();
 	}
@@ -55,6 +70,26 @@ public class SecureMaps {
 	// Function to Insert Topic into Maps
 	
 	// Returns 0 on success, 1 otherwise
+	
+	public Boolean ReadJSONFile(){
+		JSONParser jsonParser = new JSONParser();
+		try{
+			FileReader reader = new FileReader("employees.json");
+			Object obj = jsonParser.parse(reader);
+			JSONObject employeeList = (JSONObject) obj;
+			System.out.println(employeeList);
+		}
+		
+		catch (FileNotFoundException e) {
+            		e.printStackTrace();
+        	} catch (IOException e) {
+            		e.printStackTrace();
+        	} catch (ParseException e) {
+            		e.printStackTrace();
+        	}
+		return true;
+	}
+	
 	public int AddTopic(String Topic){
 		if (!Maps.has(Topic)){
 			Maps.put(Topic, new JSONObject());
@@ -62,6 +97,7 @@ public class SecureMaps {
 		}
 		return 1;
 	}
+
 
 	// //Funtion to Insert Consumer Group
 	// //Returns 0 on success, 1 otherwise
@@ -76,7 +112,36 @@ public class SecureMaps {
 		}
 		return 1;
 	}
-
+	
+	
+	
+	public int AddRuleAdmin(String Topic, String ConsumerGroup, String Permission){
+		if(Maps.has(Topic)){
+			JSONObject TopicObj = Maps.getJSONObject(Topic);
+			if (TopicObj.has(ConsumerGroup)){
+				//check if json is empty. add like rn. else persmissions and update
+				if(Maps.getJSONObject(Topic).getJSONArray(ConsumerGroup).length()==0){
+					System.out.println("In if loop");
+					JSONObject ConsumerDetails = new JSONObject();
+					ConsumerDetails.put("Permission", Permission);
+					JSONObject temp1 = Maps.getJSONObject(Topic);	
+					JSONArray temp2 = temp1.getJSONArray(ConsumerGroup);
+					temp2.put(ConsumerDetails);	
+				}
+				else{
+					System.out.println("In else loop");
+					JSONArray Permissions = Maps.getJSONObject(Topic).getJSONArray(ConsumerGroup);
+					Permissions.getJSONObject(0).put("Permission","");
+				}
+				return 0;				
+			}
+			return 1;
+		}
+		return 1;
+	}
+	
+	
+	/*
 	// //Funtion to Insert Consumer Details
 	// //Returns 0 on success, 1 otherwise
 	public int AddConsumer(String Topic, String ConsumerGroup, String ConsumerID, String Permissions, String HostIP){
@@ -96,6 +161,14 @@ public class SecureMaps {
 		}
 		return 1;
 	}
+	*/
+	//Function to return topics
+	//Returns set of topics
+	
+	public Set<String> GetTopics(){
+		return Maps.keySet();
+	}
+
 
 	// //Function to Get Consumer Groups from a topic
 	// //Returns a Set of consumer groups
@@ -131,7 +204,7 @@ public class SecureMaps {
 		}
 		return 1;
 	}
-
+	/*
 	// Funtion to Update Consumer HostIp
 	// Returns 0 on success, 1 otherwise
 	public int UpdateConsumerHostIP(String Topic, String ConsumerGroup, String Consumer, String HostIP){
@@ -150,9 +223,10 @@ public class SecureMaps {
 		}
 		return 1;
 	}
+	*/
 	
 	//TODO: Write a function to get consumer deets
-	
+	/*
 	public int CheckPermission(String Topic, String ConsumerGroup, String ConsumerID, String Permission){
 		JSONArray Consumers = GetConsumers(Topic, ConsumerGroup);
 			for (int j = 0 ; j < Consumers.length(); ++j){
@@ -161,6 +235,17 @@ public class SecureMaps {
 			}
 			return 1;
 	}
+	*/
+	public Boolean CheckPermissionAdmin(String Topic, String ConsumerGroup, String Permission){
+		JSONArray Permissions = Maps.getJSONObject(Topic).getJSONArray(ConsumerGroup);
+		String permission = Permissions.getJSONObject(0).getString("Permission");
+		if(permission.equals(Permission)){
+			return true;
+		}
+		return false;
+
+	}
+	
 
 	public JSONObject GetMaps(){
 		return Maps;

@@ -42,6 +42,7 @@ org/apache/kafka/common/message/ConsumerProtocolAssignment$TopicPartition.class
 org/apache/kafka/common/message/UpdateFeaturesRequestDataJsonConverter$FeatureUpdateKeyJsonConverter.class
 org/apache/kafka/common/security/authenticator/SaslClientAuthenticator$SaslState.class
 org/apache/kafka/common/message/CreatePartitionsResponseDataJsonConverter.class
+com/kafkastuff/wordcount/AdminCreateDemo.class
 org/apache/kafka/common/message/AlterConfigsRequestData$AlterableConfig.class
 org/apache/kafka/common/errors/UnknownLeaderEpochException.class
 org/apache/kafka/common/message/IncrementalAlterConfigsRequestDataJsonConverter$AlterConfigsResourceJsonConverter.class
@@ -112,6 +113,7 @@ org/apache/kafka/common/requests/OffsetFetchRequest$Builder.class
 org/apache/kafka/common/record/AbstractRecords$1.class
 org/apache/kafka/common/network/Send.class
 org/apache/kafka/common/config/ConfigDef$NonEmptyStringWithoutControlChars.class
+com/kafkastuff/wordcount/DummyA.class
 org/apache/kafka/common/message/OffsetForLeaderEpochResponseData.class
 org/apache/kafka/clients/consumer/CommitFailedException.class
 org/apache/kafka/common/utils/PureJavaCrc32C.class
@@ -309,6 +311,7 @@ org/apache/kafka/common/message/AddPartitionsToTxnResponseDataJsonConverter$AddP
 org/apache/kafka/common/feature/Features$MapToBaseVersionRangeConverter.class
 org/apache/kafka/common/message/AlterClientQuotasResponseDataJsonConverter$EntryDataJsonConverter.class
 org/apache/kafka/clients/ClusterConnectionStates$1.class
+com/kafkastuff/wordcount/AdminRules.class
 org/apache/kafka/common/network/PlaintextTransportLayer.class
 org/apache/kafka/common/message/DescribeLogDirsRequestDataJsonConverter.class
 org/apache/kafka/common/utils/SystemTime.class
@@ -668,6 +671,7 @@ org/apache/kafka/common/security/authenticator/SaslClientAuthenticator.class
 org/apache/kafka/common/requests/WriteTxnMarkersRequest$TxnMarkerEntry.class
 org/apache/kafka/common/message/DescribeLogDirsResponseDataJsonConverter$DescribeLogDirsTopicJsonConverter.class
 org/apache/kafka/common/message/EndQuorumEpochRequestDataJsonConverter$TopicDataJsonConverter.class
+com/kafkastuff/wordcount/SecMapsTest.class
 org/apache/kafka/common/metrics/Gauge.class
 org/apache/kafka/clients/admin/AlterConsumerGroupOffsetsOptions.class
 org/apache/kafka/common/message/StopReplicaRequestDataJsonConverter.class
@@ -743,6 +747,7 @@ org/apache/kafka/common/errors/InvalidMetadataException.class
 org/apache/kafka/clients/consumer/internals/RequestFutureAdapter.class
 org/apache/kafka/common/protocol/types/CompactArrayOf.class
 org/apache/kafka/common/requests/OffsetFetchResponse.class
+com/kafkastuff/wordcount/Flag.class
 org/apache/kafka/common/metrics/stats/Histogram$BinScheme.class
 org/apache/kafka/common/requests/DescribeConfigsResponse$ConfigSource.class
 org/apache/kafka/clients/consumer/internals/NoOpConsumerRebalanceListener.class
@@ -929,6 +934,7 @@ org/apache/kafka/common/utils/AppInfoParser$ImmutableValue.class
 org/apache/kafka/common/message/MetadataResponseDataJsonConverter.class
 org/apache/kafka/common/message/WriteTxnMarkersResponseData$WritableTxnMarkerResult.class
 org/apache/kafka/common/message/InitProducerIdResponseData.class
+org/apache/kafka/common/securekafkastuff/PunctAdmin.class
 org/apache/kafka/common/errors/IllegalGenerationException.class
 org/apache/kafka/common/header/internals/RecordHeader.class
 org/apache/kafka/common/message/AlterClientQuotasRequestData$OpData.class
@@ -1311,6 +1317,7 @@ org/apache/kafka/common/errors/NetworkException.class
 org/apache/kafka/common/message/OffsetForLeaderEpochResponseDataJsonConverter$OffsetForLeaderTopicResultJsonConverter.class
 org/apache/kafka/common/config/ConfigDef$1.class
 org/apache/kafka/common/message/UpdateFeaturesResponseDataJsonConverter$UpdatableFeatureResultJsonConverter.class
+com/kafkastuff/wordcount/Container.class
 org/apache/kafka/common/utils/FlattenedIterator.class
 org/apache/kafka/common/errors/StaleBrokerEpochException.class
 org/apache/kafka/common/message/MetadataResponseData$MetadataResponsePartition.class
@@ -1436,6 +1443,7 @@ org/apache/kafka/clients/admin/AlterConfigOp$OpType.class
 org/apache/kafka/common/metrics/stats/Frequencies.class
 org/apache/kafka/common/record/DefaultRecordBatch$1.class
 org/apache/kafka/server/authorizer/Authorizer.class
+com/kafkastuff/wordcount/DummyB.class
 org/apache/kafka/common/security/scram/internals/ScramSaslClient$1.class
 org/apache/kafka/common/message/OffsetFetchRequestData$OffsetFetchRequestTopic.class
 org/apache/kafka/common/message/ElectLeadersResponseDataJsonConverter.class
@@ -2005,6 +2013,7 @@ org/apache/kafka/common/MetricName.class
 org/apache/kafka/common/message/DeleteTopicsRequestDataJsonConverter.class
 org/apache/kafka/common/message/LeaderAndIsrRequestData$LeaderAndIsrLiveLeader.class
 org/apache/kafka/common/serialization/FloatDeserializer.class
+org/apache/kafka/common/securekafkastuff/SecureMapsAdmin.class
 org/apache/kafka/common/message/AddPartitionsToTxnRequestData.class
 org/apache/kafka/common/errors/ElectionNotNeededException.class
 org/apache/kafka/clients/consumer/OffsetCommitCallback.class

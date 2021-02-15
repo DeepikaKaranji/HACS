@@ -1,0 +1,115 @@
+Admin has to create topics and can assign rules. Told what consumer grps exist and any new consumer grp should go through the admin. 
+
+Copy the content of "json" class into the admin class and limit its access only to the admin.
+
+ 
+================================
+1. CREATE/DELETE/UPDATE TOPIC
+
+- This is done in Topics.java. Will be called from Admin and managed. 
+- But we have to setup the authentication and check the working of the system.
+- Non blocking creation, deletion and updation has to be done
+
+2. CREATE/DELETE/UPDATE CONSUMER GROUPS
+
+- Create and deletion of consumer groups has to be done by the Admin. The spout can only belong to the consumer groups created by the admin. 
+- Updation: If consumer grp exists, then call PairConsumerTopic() and return true.
+- Non blocking creation, deletion and updation has to be done
+
+3. INSERT RULES, DELETE AND UPDATE of rules
+
+- Use umashankar's code and make the JSON object available to the admin
+- Running updation/deletion as non blocking 
+- non blocking insert, delet and update has to be done.
+
+
+================================
+
+admin => create topic => create consumer group => pair consumer group and topic(spout/App.java) => add rules 
+
+                                   		                                                               => producer
+                                                                                                            
+                                                                                                             => consumer
+                                                                                                             
+================================                                                                                                       
+TASK 1:
+admin => create topic => create consumer group
+					       => producer => addRules()
+					       => consumer => updateTopic()                                                                                                    
+                
+producer() should poll right before calling function to send info
+spout has to poll before it checks if topic exists
+                                                                                                             
+
+class PunctAdmin{
+	
+	Topics t = new Topics();
+	
+	
+	authentication(username,passwd){
+		if(username=="XYZ" && passwd=="ABC"){
+			return success
+		}
+		return fail 
+	}
+	
+	createTopic(TopicName){
+		Properties props_1 = new Properties();
+		props_1.put("bootstrap.servers", "localhost:9092"); 
+
+		//t.updateTopics(props_1);
+		t.createTopic(TopicName,1,1,props_1);
+	}
+	deleteTopic(){
+		//Test out t.deleteTopic(
+	}
+	//create
+	createConsumerGrp(consumerGrpName){                                          
+		//TODO:                                                                             
+	}
+	deleteConsumerGrp(consumerGrpName){
+		//TODO
+	}
+	
+	updateConsumerGrp(consumerGrpName,TopicName){
+		//TODO
+	}
+	
+	checkCGRoupAndTopic(Cgroup,Topic){//Used by ADmin and App.java
+		checkTopicExsist(Topic);
+		//Code to check is consumer grp exsist
+		updateConsumerGrp(Cgroup,Topic)
+		
+	}
+	checkTopicExists(TopicName){
+		
+	}
+}
+======================================
+
+class AdminDemoCreateTopic{
+
+	//Complete authentication before going for demo.
+	PunctAdmin p;//Singleton
+	main(){ //If authentication is a success
+		p.createTopic(<TopicName_1>);
+		//p.createTopic(<TopicName_2>)
+		
+		//p.deleteTopic();
+		//p.createConsumerGrp(<consumerGrp>);//Order doesnt matter here because they can be create independently
+		
+		
+		
+		//p.deleteConsumerGrp()
+		
+	}
+}
+
+class AdminDemoDeleteTopic{
+	main(){
+		while
+		p.deleteTopic(<TopicName_1>)
+		//p.deleteTopic(<TopicName_2>)
+	}
+}
+=======================================                                                                                                         

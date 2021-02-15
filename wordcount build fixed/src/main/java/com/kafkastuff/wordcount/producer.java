@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.kafka.common.securekafkastuff.ConsumerTopic;
-import org.apache.kafka.common.securekafkastuff.SecureMaps;
+import org.apache.kafka.common.securekafkastuff.SecureMapsAdmin;
 import java.util.Vector;
 
 
@@ -28,6 +28,7 @@ import org.apache.kafka.common.securekafkastuff.Read;
 import org.json.*;
 import java.util.Random;
 import org.apache.kafka.common.securekafkastuff.encapsulator;
+import com.kafkastuff.wordcount.Flag;
 
 public class producer {
 	
@@ -35,6 +36,7 @@ public class producer {
 	
 	private String[] stocks = {"GOOGL","AMZN","AAPL","TSLA","TWTR"};
 	
+	/*
 	public static void listGroups(Properties properties) {
 		//LOG.info("Creating topic {}", topic);
 		try (AdminClient adminClient = AdminClient.create(properties)) {
@@ -45,14 +47,21 @@ public class producer {
 			//fail("Create test topic : " + topic + " failed, " + e.getMessage());
 		}
 	}
+	*/
 	
 	
-	public void sendInfo(KafkaProducer<String, encapsulator> Producer, String topicName, SecureMaps SecMapObj, String ConsumerGroup, String ConsumerID){
+	public void sendInfo(KafkaProducer<String, encapsulator> Producer, String topicName, SecureMapsAdmin SecMapObj, String ConsumerGroup){
 		for(int i = 0;i<100;i++) {
 			int rnd = new Random().nextInt(stocks.length);
     			String key = stocks[rnd];
     			String value = Double.toString(new Random().nextDouble() * 1000.0);
-    			encapsulator e = new encapsulator("READ",value,"Stock Name,StockPrice");
+    			
+    			String Rule = SecMapObj.Maps.getJSONObject("rules")
+    					.getJSONObject(topicName)
+    					.getJSONArray(ConsumerGroup)
+    					.getJSONObject(0).getString("Permission");
+    					
+    			encapsulator e = new encapsulator(Rule,value,"Stock Name,StockPrice");
     			Producer.send(new ProducerRecord<String, encapsulator>(topicName, key, e));
     			/*
 			if (SecMapObj.CheckPermission(topicName, ConsumerGroup, ConsumerID, "100") == 0){
@@ -67,15 +76,26 @@ public class producer {
 	public static void main(String[] args) {
 		
 		System.out.println("Started Producer");
+		String TopicName = "StockMarket";
+		/*
 		String TopicName = "StockMarketTopic";
 		Properties props_1 = new Properties();
 		props_1.put("bootstrap.servers", "localhost:9092"); 
+		
 		Topics t = new Topics();
 		//t.updateTopics(props_1);
 		t.createTopic(TopicName,1,1,props_1);
-		
+		*/
 		//listGroups(props_1);
-
+		int count = 0;
+		/*
+		while(Flag.flag!=true){
+			count+=1;
+			if(count==100){
+				System.out.println(Flag.flag+" Busy waiting for setting rules!");
+			}
+		}
+		*/
 		Properties props = new Properties();
 		props.put("bootstrap.servers", "localhost:9092");    
 		props.put("acks", "all");
@@ -93,16 +113,19 @@ public class producer {
 		//KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);
 		producer p = new producer();
 
-
+		/*
 		SecureMaps SecMapObj = new SecureMaps();
 		SecMapObj.AddTopic(TopicName);
+		*/
 		
+		SecureMapsAdmin SecMapObj = new SecureMapsAdmin();
 		
 		
 		//What is this? Isnt the ConsumerGroupList supposed to be taken from ConsumerTopic?
 		//TODO: Connect this part of the code with ConsumerTopic asap.
+		
 		Vector<String> ConsumerGroupList = new Vector<String>();
-		ConsumerGroupList.add("StockMarketTopic");
+		ConsumerGroupList.add("StockMarketGroup");
 		if(ConsumerGroupList.size() == 0)
 			System.out.println("ConsumerGroupList empty!");
 		else
@@ -111,16 +134,15 @@ public class producer {
 			
 		
 		//TODO: ConsumerID needs to change because of single consumer group and consumer
-		String Consumer = "Consumer1";
+		//String Consumer = "Consumer1";
+		//Polling exists
 		for(String CgName : ConsumerGroupList){
-			SecMapObj.AddConsumerGroup(TopicName, CgName);
-			SecMapObj.AddConsumer(TopicName, CgName, Consumer, "100", "");
-			p.sendInfo(producer, TopicName, SecMapObj, CgName, Consumer);
+			//SecMapObj.AddConsumerGroup(TopicName, CgName);
+			//SecMapObj.AddConsumer(TopicName, CgName, Consumer, "100", "");
+			p.sendInfo(producer, TopicName, SecMapObj, CgName);
 		}
-
-
 		
-		
+
 
 		System.out.println("MESSAGE SENT");
 		producer.close();
