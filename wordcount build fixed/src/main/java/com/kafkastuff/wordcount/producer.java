@@ -55,13 +55,14 @@ public class producer {
 			int rnd = new Random().nextInt(stocks.length);
     			String key = stocks[rnd];
     			String value = Double.toString(new Random().nextDouble() * 1000.0);
+				String KV = key + "," + value;
     			
     			String Rule = SecMapObj.Maps.getJSONObject("rules")
     					.getJSONObject(topicName)
     					.getJSONArray(ConsumerGroup)
     					.getJSONObject(0).getString("Permission");
     					
-    			encapsulator e = new encapsulator(Rule,value,"Stock Name,StockPrice");
+    			encapsulator e = new encapsulator(Rule,KV,"Stock Name,StockPrice");
     			Producer.send(new ProducerRecord<String, encapsulator>(topicName, key, e));
     			/*
 			if (SecMapObj.CheckPermission(topicName, ConsumerGroup, ConsumerID, "100") == 0){
