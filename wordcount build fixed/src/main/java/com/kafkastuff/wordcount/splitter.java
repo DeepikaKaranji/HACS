@@ -41,9 +41,20 @@ public class splitter extends BaseRichBolt {
 		String data = r.read();
 		if(data!=null){
 			try {
-				BufferedWriter fObj = new BufferedWriter(new FileWriter("output.txt",true));
-				fObj.write(data+"\n");
-				fObj.close();
+				
+				String[] KV = data.split(",",2);
+				if (Double.parseDouble((KV[1])) < 100.0){
+					BufferedWriter fObj = new BufferedWriter(new FileWriter("output.txt",true));
+					fObj.write(data+"\n");
+					fObj.close();
+				}
+				else{
+					BufferedWriter fObj = new BufferedWriter(new FileWriter("output1.txt",true));
+					fObj.write(data+"\n");
+					fObj.close();
+				}
+
+				//System.out.println(data);
 			}
 			catch (IOException e) {
 				e.printStackTrace();
