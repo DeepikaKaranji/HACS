@@ -95,7 +95,7 @@ public class SecureMapsAdmin{
 	}
 	*/
 	
-	private Boolean WriteJSONFile(){
+	protected Boolean WriteJSONFile(){
 		try{
 			FileWriter file = new FileWriter("Rules.json");
 			file.write(Maps.toString());
@@ -107,7 +107,7 @@ public class SecureMapsAdmin{
 		return true;
 	}
 	
-	public int AddTopic(String Topic){
+	protected int AddTopic(String Topic){
 		if (!Maps.getJSONObject("rules").has(Topic)){
 			Maps.getJSONObject("rules").put(Topic, new JSONObject());
 			WriteJSONFile();
@@ -119,7 +119,7 @@ public class SecureMapsAdmin{
 
 	// //Funtion to Insert Consumer Group
 	// //Returns 0 on success, 1 otherwise
-	public int AddConsumerGroup(String Topic, String ConsumerGroup){
+	protected int AddConsumerGroup(String Topic, String ConsumerGroup){
 		if (Maps.getJSONObject("rules").has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject("rules").getJSONObject(Topic);
 			if (!TopicObj.has(ConsumerGroup)){
@@ -134,7 +134,7 @@ public class SecureMapsAdmin{
 	
 	
 	
-	public int AddRuleAdmin(String Topic, String ConsumerGroup, String Permission){
+	protected int AddRuleAdmin(String Topic, String ConsumerGroup, String Permission){
 		if(Maps.getJSONObject("rules").has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject("rules").getJSONObject(Topic);
 			System.out.println("Map: "+TopicObj);
