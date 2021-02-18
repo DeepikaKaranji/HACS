@@ -26,6 +26,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import com.kafkastuff.wordcount.splitter;
 import org.apache.kafka.common.securekafkastuff.ConsumerTopic;
 import org.apache.storm.kafka.spout.KafkaSpoutConfig.Builder;
+import org.apache.kafka.common.securekafkastuff.SecureMapsAdmin;
 
 public class App 
 {
@@ -44,12 +45,16 @@ public class App
 
 		String ConsumerGrp = "StockMarketGroup";
 		String Topic = "StockMarket";
+
+		SecureMapsAdmin admin = new SecureMapsAdmin();
 		
 		
-		ConsumerTopic c = new ConsumerTopic();
+		//ConsumerTopic c = new ConsumerTopic();
 		//System.out.println("Topic exists: "+c.ConsumerTopicPair(ConsumerGrp,Topic));
 		//Poll
-		if(c.TopicExists(Topic)){
+		System.out.println("TOOOOOOOOOOOOPPPPPPPPPIIIIIIIIICCCCCCCCCCC" + admin.CheckTopic(Topic));
+		System.out.println("CCCCCCOOOOOOOONNNNNNNNSSSSSSSUUUUUUUMMMMMMMEEEEEERRRRRRR" + admin.CheckConsumerGroups(Topic, ConsumerGrp));
+		if(admin.CheckTopic(Topic) == false && admin.CheckConsumerGroups(Topic, ConsumerGrp) == false){
 			KafkaSpoutConfig<String, String> kafkaSpoutConfig = KafkaSpoutConfig.builder("localhost:9092",Topic)
 			.setProp(ConsumerConfig.GROUP_ID_CONFIG, ConsumerGrp)
 			.setProp(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer")
