@@ -25,10 +25,15 @@ import org.apache.kafka.common.securekafkastuff.readImposer;
 public class splitter extends BaseRichBolt {
 
 	OutputCollector collector;
+	public Integer Runs;
 
 	@Override
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
 		this.collector = collector;
+	}
+
+	public splitter(){
+		Runs = 0;
 	}
 
 	@Override
@@ -41,27 +46,28 @@ public class splitter extends BaseRichBolt {
 		String data = r.read();
 		if(data!=null){
 			try {
-				
+				BufferedWriter fObj2 = new BufferedWriter(new FileWriter("raw.txt",true));
 				String[] KV = data.split(",",2);
-				if (Double.parseDouble((KV[1])) < 100.0){
-					BufferedWriter fObj = new BufferedWriter(new FileWriter("output.txt",true));
-					fObj.write(data+"\n");
-					fObj.close();
+				fObj2.write("BallNumber - " + KV[0] + ", Score - " + KV[1] + "\n");
+				fObj2.close();
+				Runs += Integer.parseInt(KV[1]);
+				if (Integer.parseInt((KV[0])) % 6 == 0){
+					Double RunRate = Double.valueOf(Runs) / 6;
+					Integer Overs = Integer.parseInt(KV[0]) / 6;
+					BufferedWriter fObj3 = new BufferedWriter(new FileWriter("processed.txt",true));
+					fObj3.write("OverNumber - " + Overs +", RunsScored - "+Runs+", RunRate - "+ RunRate+"\n");
+					fObj3.close();
+					Runs = 0;
 				}
-				else{
-					BufferedWriter fObj = new BufferedWriter(new FileWriter("output1.txt",true));
-					fObj.write(data+"\n");
-					fObj.close();
-				}
-
 				//System.out.println(data);
 			}
 			catch (IOException e) {
 				e.printStackTrace();
 			}
 			collector.emit(new Values(data));
+			
 		}
-		
+	
 		
 		//String sentence = input.getValue(4).toString();
 		//System.out.println("Sentence : " + sentence);

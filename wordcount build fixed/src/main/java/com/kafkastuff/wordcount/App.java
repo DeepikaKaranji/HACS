@@ -43,8 +43,8 @@ public class App
 		System.out.println("Empty Topology created");
 //		String ConsumerGrp = "StockMarketConsumer"+UUID.randomUUID().toString();
 
-		String ConsumerGrp = "StockMarketGroup";
-		String Topic = "StockMarket";
+		String ConsumerGrp = "INDvsAUS";
+		String Topic = "Cricket";
 
 		SecureMapsAdmin admin = new SecureMapsAdmin();
 		
@@ -73,7 +73,7 @@ public class App
 
 			//NIMBUS ERRORS HERE
 			LocalCluster localCluster = new LocalCluster();
-			localCluster.submitTopology("Stocktopology",new Config(),tp.createTopology());
+			localCluster.submitTopology("CricketTopology",new Config(),tp.createTopology());
 			Thread.sleep(30000);
 		}
 		else{

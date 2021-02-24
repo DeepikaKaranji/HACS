@@ -150,9 +150,6 @@ public class AdminRules extends SecureMapsAdmin{
 	public static void main(String[] args){
 		AdminRules a = new AdminRules();
 		
-		System.out.println("Insert: "+a.insertRules("StockMarketGroup","StockMarket","READ"));
-		System.out.println("Insert: "+a.insertRules("abc","xyz","READ"));
-		//System.out.println("Delete: "+a.deleteRules("StockMarketGroup","StockMarket","READ"));
-		
+		System.out.println("Insert: "+a.insertRules("INDvsAUS","Cricket","READ"));
 	}
 }
