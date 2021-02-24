@@ -190,11 +190,27 @@ public class SecureMapsAdmin{
 		return Maps.getJSONObject("rules").keySet();
 	}
 
+	public boolean CheckTopic(String Topic){
+		Set<String> Topics = GetTopics();
+		for(String topics : Topics){
+			if (topics.equals(Topic)) return false;
+		}
+		return true;
+	}
+
 
 	// //Function to Get Consumer Groups from a topic
 	// //Returns a Set of consumer groups
 	public Set<String> GetConsumerGroups(String Topic){
 		return Maps.getJSONObject("rules").getJSONObject(Topic).keySet();
+	}
+
+	public boolean CheckConsumerGroups(String Topic, String ConsumerGroup){
+		Set<String> ConsumerGroups = GetConsumerGroups(Topic);
+		for(String consumers : ConsumerGroups){
+			if (ConsumerGroup.equals(consumers)) return false;
+		}
+		return true;
 	}
 
 	//Function to Get Consumers from a Topic and Consumer Group
