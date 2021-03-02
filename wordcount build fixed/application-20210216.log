@@ -1,0 +1,573 @@
+2021-02-16 21:48:16.825 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [localhost:9092]
+	client.dns.lookup = use_all_dns_ips
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 127000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2021-02-16 21:48:16.861 [com.kafkastuff.wordcount.AdminRules.main()] DEBUG org.apache.kafka.clients.admin.internals.AdminMetadataManager - [AdminClient clientId=adminclient-1] Setting bootstrap cluster metadata Cluster(id = null, nodes = [localhost:9092 (id: -1 rack: null)], partitions = [], controller = null).
+2021-02-16 21:48:16.924 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.6.0
+2021-02-16 21:48:16.925 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 62abe01bee039651
+2021-02-16 21:48:16.925 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1613492296921
+2021-02-16 21:48:16.927 [com.kafkastuff.wordcount.AdminRules.main()] DEBUG org.apache.kafka.clients.admin.KafkaAdminClient - [AdminClient clientId=adminclient-1] Kafka admin client initialized
+2021-02-16 21:48:16.930 [com.kafkastuff.wordcount.AdminRules.main()] DEBUG org.apache.kafka.clients.admin.KafkaAdminClient - [AdminClient clientId=adminclient-1] Queueing Call(callName=listTopics, deadlineMs=1613492356928, tries=0, nextAllowedTryMs=0) with a timeout 60000 ms from now.
+2021-02-16 21:48:16.934 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:16.958 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:16.978 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:16.979 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:17.083 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:17.084 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:17.086 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:17.086 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:17.288 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:17.289 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:17.291 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:17.291 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:17.594 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:17.595 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:17.597 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:17.597 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:18.101 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:18.102 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:18.103 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:18.104 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:18.809 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:18.810 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:18.811 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:18.812 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:19.718 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:19.719 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:19.721 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:19.721 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:20.728 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:20.730 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:20.732 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:20.732 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:21.839 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:21.841 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:21.842 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:21.843 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:22.849 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:22.851 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:22.852 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:22.853 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:23.759 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:23.760 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:23.762 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:23.762 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:24.668 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:24.670 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:24.672 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:24.672 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:25.779 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:25.781 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:25.782 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:25.783 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:26.689 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:26.689 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:26.690 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:26.691 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:27.696 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:27.698 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:27.699 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:27.700 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:28.807 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:28.808 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:28.810 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:28.810 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:29.716 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:29.717 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:29.719 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:29.719 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:30.725 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:30.726 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:30.728 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:30.728 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:31.633 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:31.635 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:31.636 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:31.637 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:32.642 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:32.643 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:48:32.645 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:48:32.645 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:48:33.852 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:48:33.854 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.j2021-02-16 21:49:00.179 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [localhost:9092]
+	client.dns.lookup = use_all_dns_ips
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 127000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2021-02-16 21:49:00.223 [com.kafkastuff.wordcount.AdminRules.main()] DEBUG org.apache.kafka.clients.admin.internals.AdminMetadataManager - [AdminClient clientId=adminclient-1] Setting bootstrap cluster metadata Cluster(id = null, nodes = [localhost:9092 (id: -1 rack: null)], partitions = [], controller = null).
+2021-02-16 21:49:00.292 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.6.0
+2021-02-16 21:49:00.292 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 62abe01bee039651
+2021-02-16 21:49:00.292 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1613492340288
+2021-02-16 21:49:00.294 [com.kafkastuff.wordcount.AdminRules.main()] DEBUG org.apache.kafka.clients.admin.KafkaAdminClient - [AdminClient clientId=adminclient-1] Kafka admin client initialized
+2021-02-16 21:49:00.298 [com.kafkastuff.wordcount.AdminRules.main()] DEBUG org.apache.kafka.clients.admin.KafkaAdminClient - [AdminClient clientId=adminclient-1] Queueing Call(callName=listTopics, deadlineMs=1613492400296, tries=0, nextAllowedTryMs=0) with a timeout 60000 ms from now.
+2021-02-16 21:49:00.302 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:49:00.336 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:49:00.359 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:49:00.360 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:49:00.464 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:49:00.465 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:49:00.466 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:49:00.467 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:49:00.668 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:49:00.670 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.a2021-02-16 21:50:36.317 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [localhost:9092]
+	client.dns.lookup = use_all_dns_ips
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 127000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2021-02-16 21:50:36.353 [com.kafkastuff.wordcount.AdminRules.main()] DEBUG org.apache.kafka.clients.admin.internals.AdminMetadataManager - [AdminClient clientId=adminclient-1] Setting bootstrap cluster metadata Cluster(id = null, nodes = [localhost:9092 (id: -1 rack: null)], partitions = [], controller = null).
+2021-02-16 21:50:36.420 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.6.0
+2021-02-16 21:50:36.420 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 62abe01bee039651
+2021-02-16 21:50:36.420 [com.kafkastuff.wordcount.AdminRules.main()] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1613492436416
+2021-02-16 21:50:36.422 [com.kafkastuff.wordcount.AdminRules.main()] DEBUG org.apache.kafka.clients.admin.KafkaAdminClient - [AdminClient clientId=adminclient-1] Kafka admin client initialized
+2021-02-16 21:50:36.426 [com.kafkastuff.wordcount.AdminRules.main()] DEBUG org.apache.kafka.clients.admin.KafkaAdminClient - [AdminClient clientId=adminclient-1] Queueing Call(callName=listTopics, deadlineMs=1613492496425, tries=0, nextAllowedTryMs=0) with a timeout 60000 ms from now.
+2021-02-16 21:50:36.430 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:50:36.472 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:50:36.499 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:50:36.500 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:50:36.606 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:50:36.607 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.run(KafkaAdminClient.java:1258) [classes/:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+2021-02-16 21:50:36.608 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Node -1 disconnected.
+2021-02-16 21:50:36.608 [kafka-admin-client-thread | adminclient-1] WARN  org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2021-02-16 21:50:36.710 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.clients.NetworkClient - [AdminClient clientId=adminclient-1] Initiating connection to node localhost:9092 (id: -1 rack: null) using address localhost/127.0.0.1
+2021-02-16 21:50:36.711 [kafka-admin-client-thread | adminclient-1] DEBUG org.apache.kafka.common.network.Selector - [AdminClient clientId=adminclient-1] Connection with localhost/127.0.0.1 disconnected
+java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:?]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[?:?]
+	at org.apache.kafka.common.network.PlaintextTransportLayer.finishConnect(PlaintextTransportLayer.java:50) ~[classes/:?]
+	at org.apache.kafka.common.network.KafkaChannel.finishConnect(KafkaChannel.java:224) ~[classes/:?]
+	at org.apache.kafka.common.network.Selector.pollSelectionKeys(Selector.java:526) [classes/:?]
+	at org.apache.kafka.common.network.Selector.poll(Selector.java:481) [classes/:?]
+	at org.apache.kafka.clients.NetworkClient.poll(NetworkClient.java:559) [classes/:?]
+	at org.apache.kafka.clients.admin.KafkaAdminClient$AdminClientRunnable.processRequests(KafkaAdminClient.java:1327) [classes/:?]
+	at org.apache.kafka.clients.a

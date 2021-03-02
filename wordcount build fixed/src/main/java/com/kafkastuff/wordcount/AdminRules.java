@@ -51,9 +51,18 @@ public class AdminRules{
 	public Boolean listGroups(String ConsumerGrp) {
 		//LOG.info("Creating topic {}", topic);
 		Boolean exist = false;
-		Properties properties = new Properties();
-		properties.put("bootstrap.servers", "localhost:9092"); 
-		try (AdminClient adminClient = AdminClient.create(properties)) {
+		Properties props = new Properties();
+		props.put("bootstrap.servers", "localhost:9092");
+		props.put("security.protocol", "SSL");
+		//props.put("ssl.keystore.type", "PKCS12");
+		props.put("ssl.keystore.location", "client.keystore.jks");
+		props.put("ssl.keystore.password", "changeit");
+		props.put("ssl.key.password", "changeit");
+		props.put("ssl.truststore.location", "client.truststore.jks");
+		props.put("ssl.truststore.password", "changeit");
+		//properties.put("ssl.key.password","kafka123");
+		
+		try (AdminClient adminClient = AdminClient.create(props)) {
 			ListConsumerGroupsResult listGroups = adminClient.listConsumerGroups();
 			List<String> groupIds = listGroups.all().get().stream().map(s -> s.groupId()).collect(Collectors.toList());
 			//System.out.println("Groups: "+groupIds);

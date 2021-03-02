@@ -11,7 +11,7 @@ import org.apache.storm.tuple.Values;
 import java.util.HashMap;
 import java.util.Map;
 
-import java.io.FileWriter;   // Import the FileWriter class
+import java.io.FileWriter;   
 import java.io.IOException;
 import java.io.BufferedWriter;
 
@@ -21,10 +21,12 @@ import java.io.FileNotFoundException;
 import org.apache.kafka.common.securekafkastuff.encapsulator;
 import org.apache.kafka.common.securekafkastuff.imposer;
 import org.apache.kafka.common.securekafkastuff.readImposer;
+import java.lang.instrument.Instrumentation;
 
 public class splitter extends BaseRichBolt {
 
 	OutputCollector collector;
+	private static Instrumentation instrumentation;
 
 	@Override
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
@@ -35,39 +37,32 @@ public class splitter extends BaseRichBolt {
 	public void execute(Tuple input){
 		System.out.println("In execute function of spliter\n");
 		encapsulator sentence = encapsulator.class.cast(input.getValue(4));
+		try{
+			BufferedWriter fObj = new BufferedWriter(new FileWriter("demo_encap.txt",true));
+			fObj.write("========================"+"\n");
+			fObj.write(sentence.getAcc()+"\n");
+			fObj.write(sentence.getData()+"\n");
+			fObj.write(sentence.getSchema()+"\n");		
+			fObj.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}		
 		
+
+				
 		imposer r = new readImposer(sentence);
-		
-		String data = r.read();
-		if(data!=null){
+		if(r.read()!=null){
 			try {
 				BufferedWriter fObj = new BufferedWriter(new FileWriter("output.txt",true));
-				fObj.write(data+"\n");
+				fObj.write(r.read()+"\n");
 				fObj.close();
 			}
 			catch (IOException e) {
 				e.printStackTrace();
 			}
-			collector.emit(new Values(data));
+			collector.emit(new Values(r.read()));
 		}
-		
-		
-		//String sentence = input.getValue(4).toString();
-		//System.out.println("Sentence : " + sentence);
-		/*
-		if (sentence != null) {
-			//System.out.println(sentence.getData());
-			try {
-				BufferedWriter fObj = new BufferedWriter(new FileWriter("output.txt",true));
-				fObj.write(sentence.getData()+"\n");
-				fObj.close();
-			} 
-			catch (IOException e) {
-				e.printStackTrace();
-			}
-			collector.emit(new Values(sentence.getData()));
-		}
-		*/
 		collector.ack(input);
 	}
 
