@@ -41,13 +41,13 @@ public class App
 		System.out.println("Config given for Spout");
 		final TopologyBuilder tp = new TopologyBuilder();
 		System.out.println("Empty Topology created");
-//		String ConsumerGrp = "StockMarketConsumer"+UUID.randomUUID().toString();
 
 		String ConsumerGrp = "INDvsAUS";
 		String Topic = "Cricket";
 
 		SecureMapsAdmin admin = new SecureMapsAdmin();
 		
+		if(admin.CheckTopic(Topic) == false && admin.CheckConsumerGroups(Topic, ConsumerGrp) == false){
 		
 		//ConsumerTopic c = new ConsumerTopic();
 		//System.out.println("Topic exists: "+c.ConsumerTopicPair(ConsumerGrp,Topic));

@@ -1990,6 +1990,7 @@ org/apache/kafka/common/memory/GarbageCollectedMemoryPool$GarbageCollectionListe
 org/apache/kafka/common/utils/Crc32.class
 org/apache/kafka/common/metrics/JmxReporter.class
 org/apache/kafka/common/errors/OffsetOutOfRangeException.class
+com/kafkastuff/wordcount/producer_demo.class
 org/apache/kafka/common/message/AlterIsrResponseData$TopicData.class
 org/apache/kafka/common/requests/DescribeQuorumRequest$1.class
 org/apache/kafka/common/message/ElectLeadersResponseDataJsonConverter$PartitionResultJsonConverter.class
