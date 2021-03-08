@@ -49,6 +49,12 @@ public class App
 		
 		if(admin.CheckTopic(Topic) == false && admin.CheckConsumerGroups(Topic, ConsumerGrp) == false){
 		
+		//ConsumerTopic c = new ConsumerTopic();
+		//System.out.println("Topic exists: "+c.ConsumerTopicPair(ConsumerGrp,Topic));
+		//Poll
+		System.out.println("TOOOOOOOOOOOOPPPPPPPPPIIIIIIIIICCCCCCCCCCC" + admin.CheckTopic(Topic));
+		System.out.println("CCCCCCOOOOOOOONNNNNNNNSSSSSSSUUUUUUUMMMMMMMEEEEEERRRRRRR" + admin.CheckConsumerGroups(Topic, ConsumerGrp));
+		if(admin.CheckTopic(Topic) == false && admin.CheckConsumerGroups(Topic, ConsumerGrp) == false){
 			KafkaSpoutConfig<String, String> kafkaSpoutConfig = KafkaSpoutConfig.builder("localhost:9092",Topic)
 			.setProp(ConsumerConfig.GROUP_ID_CONFIG, ConsumerGrp)
 			.setProp(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer")
