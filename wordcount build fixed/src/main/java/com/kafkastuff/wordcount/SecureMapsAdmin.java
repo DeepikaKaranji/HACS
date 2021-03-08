@@ -95,7 +95,7 @@ public class SecureMapsAdmin{
 	}
 	*/
 	
-	private Boolean WriteJSONFile(){
+	protected Boolean WriteJSONFile(){
 		try{
 			FileWriter file = new FileWriter("Rules.json");
 			file.write(Maps.toString());
@@ -107,7 +107,7 @@ public class SecureMapsAdmin{
 		return true;
 	}
 	
-	public int AddTopic(String Topic){
+	protected int AddTopic(String Topic){
 		if (!Maps.getJSONObject("rules").has(Topic)){
 			Maps.getJSONObject("rules").put(Topic, new JSONObject());
 			WriteJSONFile();
@@ -119,7 +119,7 @@ public class SecureMapsAdmin{
 
 	// //Funtion to Insert Consumer Group
 	// //Returns 0 on success, 1 otherwise
-	public int AddConsumerGroup(String Topic, String ConsumerGroup){
+	protected int AddConsumerGroup(String Topic, String ConsumerGroup){
 		if (Maps.getJSONObject("rules").has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject("rules").getJSONObject(Topic);
 			if (!TopicObj.has(ConsumerGroup)){
@@ -134,7 +134,7 @@ public class SecureMapsAdmin{
 	
 	
 	
-	public int AddRuleAdmin(String Topic, String ConsumerGroup, String Permission){
+	protected int AddRuleAdmin(String Topic, String ConsumerGroup, String Permission){
 		if(Maps.getJSONObject("rules").has(Topic)){
 			JSONObject TopicObj = Maps.getJSONObject("rules").getJSONObject(Topic);
 			System.out.println("Map: "+TopicObj);
@@ -190,11 +190,27 @@ public class SecureMapsAdmin{
 		return Maps.getJSONObject("rules").keySet();
 	}
 
+	public boolean CheckTopic(String Topic){
+		Set<String> Topics = GetTopics();
+		for(String topics : Topics){
+			if (topics.equals(Topic)) return false;
+		}
+		return true;
+	}
+
 
 	// //Function to Get Consumer Groups from a topic
 	// //Returns a Set of consumer groups
 	public Set<String> GetConsumerGroups(String Topic){
 		return Maps.getJSONObject("rules").getJSONObject(Topic).keySet();
+	}
+
+	public boolean CheckConsumerGroups(String Topic, String ConsumerGroup){
+		Set<String> ConsumerGroups = GetConsumerGroups(Topic);
+		for(String consumers : ConsumerGroups){
+			if (ConsumerGroup.equals(consumers)) return false;
+		}
+		return true;
 	}
 
 	//Function to Get Consumers from a Topic and Consumer Group

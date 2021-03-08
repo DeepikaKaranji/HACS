@@ -30,39 +30,44 @@ import java.util.Random;
 import org.apache.kafka.common.securekafkastuff.encapsulator;
 import com.kafkastuff.wordcount.Flag;
 
-public class producer_demo {
+public class producerMultipleStreams {
 	
 	private static final Logger logger = LogManager.getLogger(producer.class);
 	
-	//private String[] stocks = {"GOOGL","AMZN","AAPL","TSLA","TWTR"};
+	private String[] runs = {"1","2","3","4","6"};
 	
-	
-	public void sendInfo(KafkaProducer<String, encapsulator> Producer, String topicName, String Rule, String ConsumerGroup){
+	public void sendInfo(KafkaProducer<String, encapsulator> Producer, String topicName1,String topicName2, String ConsumerGroup){
 		/*
-		for(int i = 0;i<100;i++) {
-			int rnd = new Random().nextInt(stocks.length);
-    			String key = stocks[rnd];
-    			String value = Double.toString(new Random().nextDouble() * 1000.0);
+		for(int i = 0;i<300;i++) {
+			int rnd = new Random().nextInt(runs.length);
+    			String value = runs[rnd];
+				String key = String.valueOf(i + 1);
+				String KV = key + "," + value;
     			
     			String Rule = SecMapObj.Maps.getJSONObject("rules")
     					.getJSONObject(topicName)
     					.getJSONArray(ConsumerGroup)
     					.getJSONObject(0).getString("Permission");
     					
-    			encapsulator e = new encapsulator(Rule,value,"Stock Name,StockPrice");
+    			encapsulator e = new encapsulator(Rule,KV,"BallNumber,Score");
     			Producer.send(new ProducerRecord<String, encapsulator>(topicName, key, e));
+				
 		}
 		*/
 		
-		encapsulator e = new encapsulator(Rule,"156 256","BallNo TotalRun");
-		Producer.send(new ProducerRecord<String, encapsulator>(topicName,"156 256", e));		
+		encapsulator e1 = new encapsulator("READ:a,b","1,2,3,5","a,b,c,e");
+		encapsulator e2 = new encapsulator("READ:a,e","1,4,5","a,d,e"); //1 2 5
+		
+		Producer.send(new ProducerRecord<String, encapsulator>(topicName1, "1,2,3", e1));
+		Producer.send(new ProducerRecord<String, encapsulator>(topicName2, "4,5,6", e2));
 	}
 
 	public static void main(String[] args) {
 		
 		System.out.println("Started Producer");
-		String TopicName = "StockMarket";
-		int count = 0;
+		String TopicName1 = "t1";
+		String TopicName2 = "t2";
+		
 		Properties props = new Properties();
 		props.put("bootstrap.servers", "localhost:9092");    
 		props.put("acks", "all");
@@ -75,20 +80,24 @@ public class producer_demo {
 		props.put("rules","GROUP1:READ");
 		
 		KafkaProducer<String, encapsulator> producer = new KafkaProducer<String, encapsulator>(props);
-		producer_demo p = new producer_demo();
-		
+		producerMultipleStreams p = new producerMultipleStreams();
+
 		//SecureMapsAdmin SecMapObj = new SecureMapsAdmin();
-		
 		Vector<String> ConsumerGroupList = new Vector<String>();
-		ConsumerGroupList.add("StockMarketGroup");
+		ConsumerGroupList.add("cgrp");
 		if(ConsumerGroupList.size() == 0)
 			System.out.println("ConsumerGroupList empty!");
 		else
 			System.out.println("All fine");
-			
+		
+		
 		for(String CgName : ConsumerGroupList){
-			p.sendInfo(producer, TopicName, "READ", CgName);
+			p.sendInfo(producer, TopicName1,TopicName2, CgName);
 		}
+		
+
+
+		System.out.println("MESSAGE SENT");
 		producer.close();
 	}	
 }

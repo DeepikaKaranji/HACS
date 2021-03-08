@@ -15,8 +15,8 @@ public class SecMapsTest{
 		//s.AddRuleAdmin("G","Hoes","wrong perm!");
 		//s.AddRuleAdmin("","Hoes","wrong perm!");
 		
-		s.AddTopic("StockMarketTopic");
-		s.AddConsumerGroup("StockMarketTopic","StockMarket");
+		//s.AddTopic("StockMarketTopic");
+		//s.AddConsumerGroup("StockMarketTopic","StockMarket");
 		
 		s.GetTopics();
 		//s.ReadJSONFile();

@@ -11,7 +11,7 @@ import org.apache.storm.tuple.Values;
 import java.util.HashMap;
 import java.util.Map;
 
-import java.io.FileWriter;   
+import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;
 import java.io.BufferedWriter;
 
@@ -21,48 +21,70 @@ import java.io.FileNotFoundException;
 import org.apache.kafka.common.securekafkastuff.encapsulator;
 import org.apache.kafka.common.securekafkastuff.imposer;
 import org.apache.kafka.common.securekafkastuff.readImposer;
-import java.lang.instrument.Instrumentation;
 
 public class splitter extends BaseRichBolt {
 
 	OutputCollector collector;
-	private static Instrumentation instrumentation;
+	public Integer Runs;
 
 	@Override
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
 		this.collector = collector;
 	}
 
+	public splitter(){
+		Runs = 0;
+	}
+
 	@Override
 	public void execute(Tuple input){
 		System.out.println("In execute function of spliter\n");
 		encapsulator sentence = encapsulator.class.cast(input.getValue(4));
-		try{
-			BufferedWriter fObj = new BufferedWriter(new FileWriter("demo_encap.txt",true));
-			fObj.write("========================"+"\n");
-			fObj.write(sentence.getAcc()+"\n");
-			fObj.write(sentence.getData()+"\n");
-			fObj.write(sentence.getSchema()+"\n");		
-			fObj.close();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}		
 		
-
-				
 		imposer r = new readImposer(sentence);
-		if(r.read()!=null){
+		
+		String data = r.read();
+		if(data!=null){
 			try {
-				BufferedWriter fObj = new BufferedWriter(new FileWriter("output.txt",true));
-				fObj.write(r.read()+"\n");
-				fObj.close();
+				BufferedWriter fObj2 = new BufferedWriter(new FileWriter("raw.txt",true));
+				String[] KV = data.split(",",2);
+				fObj2.write("BallNumber - " + KV[0] + ", Score - " + KV[1] + "\n");
+				fObj2.close();
+				Runs += Integer.parseInt(KV[1]);
+				if (Integer.parseInt((KV[0])) % 6 == 0){
+					Double RunRate = Double.valueOf(Runs) / 6;
+					Integer Overs = Integer.parseInt(KV[0]) / 6;
+					BufferedWriter fObj3 = new BufferedWriter(new FileWriter("processed.txt",true));
+					fObj3.write("OverNumber - " + Overs +", RunsScored - "+Runs+", RunRate - "+ RunRate+"\n");
+					fObj3.close();
+					Runs = 0;
+				}
+				//System.out.println(data);
 			}
 			catch (IOException e) {
 				e.printStackTrace();
 			}
-			collector.emit(new Values(r.read()));
+			collector.emit(new Values(data));
+			
 		}
+	
+		
+		//String sentence = input.getValue(4).toString();
+		//System.out.println("Sentence : " + sentence);
+		/*
+		if (sentence != null) {
+			//System.out.println(sentence.getData());
+			try {
+				BufferedWriter fObj = new BufferedWriter(new FileWriter("output.txt",true));
+				fObj.write(sentence.getData()+"\n");
+				fObj.close();
+			} 
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			collector.emit(new Values(sentence.getData()));
+		}
+		*/
 		collector.ack(input);
 	}
 

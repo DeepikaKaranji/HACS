@@ -34,7 +34,7 @@ public class producer {
 	
 	private static final Logger logger = LogManager.getLogger(producer.class);
 	
-	private String[] stocks = {"GOOGL","AMZN","AAPL","TSLA","TWTR"};
+	private String[] runs = {"1","2","3","4","6"};
 	
 	/*
 	public static void listGroups(Properties properties) {
@@ -51,17 +51,18 @@ public class producer {
 	
 	
 	public void sendInfo(KafkaProducer<String, encapsulator> Producer, String topicName, SecureMapsAdmin SecMapObj, String ConsumerGroup){
-		for(int i = 0;i<100;i++) {
-			int rnd = new Random().nextInt(stocks.length);
-    			String key = stocks[rnd];
-    			String value = Double.toString(new Random().nextDouble() * 1000.0);
+		for(int i = 0;i<300;i++) {
+			int rnd = new Random().nextInt(runs.length);
+    			String value = runs[rnd];
+				String key = String.valueOf(i + 1);
+				String KV = key + "," + value;
     			
     			String Rule = SecMapObj.Maps.getJSONObject("rules")
     					.getJSONObject(topicName)
     					.getJSONArray(ConsumerGroup)
     					.getJSONObject(0).getString("Permission");
     					
-    			encapsulator e = new encapsulator(Rule,value,"Stock Name,StockPrice");
+    			encapsulator e = new encapsulator(Rule,KV,"BallNumber,Score");
     			Producer.send(new ProducerRecord<String, encapsulator>(topicName, key, e));
     			/*
 			if (SecMapObj.CheckPermission(topicName, ConsumerGroup, ConsumerID, "100") == 0){
@@ -76,7 +77,7 @@ public class producer {
 	public static void main(String[] args) {
 		
 		System.out.println("Started Producer");
-		String TopicName = "StockMarket";
+		String TopicName = "Cricket";
 		/*
 		String TopicName = "StockMarketTopic";
 		Properties props_1 = new Properties();
@@ -125,7 +126,7 @@ public class producer {
 		//TODO: Connect this part of the code with ConsumerTopic asap.
 		
 		Vector<String> ConsumerGroupList = new Vector<String>();
-		ConsumerGroupList.add("StockMarketGroup");
+		ConsumerGroupList.add("INDvsAUS");
 		if(ConsumerGroupList.size() == 0)
 			System.out.println("ConsumerGroupList empty!");
 		else
