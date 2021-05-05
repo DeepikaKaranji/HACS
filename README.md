@@ -11,7 +11,7 @@ cd /usr/local/kafka
 bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 -topic -group <group_name>
 ```
 
-## Query on Single Stream
+## PoC for Query on a Single Stream
 ```
 Compilation: ./scripts/compile_code.sh
 Create a Kafka topic: ./scripts/create_topic.sh
@@ -19,6 +19,13 @@ Set access control rule: .scripts/create_rule.sh
 In 2 separate terminals:
   Producer: ./scripts/producer.sh 
   Consumer: ./scripts/consumer.sh
+```
+
+## PoC for Join Query on Two Streams
+```
+In 2 separate terminals:
+  Producer: ./scripts/producerMultipleStreams.sh
+  Consumer: ./scripts/spoutMultipleStreams.sh
 ```
 
 ## Compile and Execute a Particular File
