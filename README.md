@@ -1,14 +1,24 @@
 # Secure-Kafka-Storm
 
-## Create a Topic
+## Create a Topic via KafkaCLI
 ```
 cd /usr/local/kafka
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic <TOPIC_NAME>
 ```
-## Create a Consumer Group
+## Create a Consumer Group via KafkaCLI
 ```
 cd /usr/local/kafka
 bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 -topic -group <group_name>
+```
+
+## Query on Single Stream
+```
+Compilation: ./scripts/compile_code.sh
+Create a Kafka topic: ./scripts/create_topic.sh
+Set access control rule: .scripts/create_rule.sh
+In 2 separate terminals:
+  Producer: ./scripts/producer.sh 
+  Consumer: ./scripts/consumer.sh
 ```
 
 ## Compile and Execute a Particular File
