@@ -15,7 +15,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 -topic -group <gr
 ```
 Compilation: ./scripts/compile_code.sh
 Create a Kafka topic: ./scripts/create_topic.sh
-Set access control rule: .scripts/create_rule.sh
+Set access control rule: ./scripts/create_rule.sh
 In 2 separate terminals:
   Producer: ./scripts/producer.sh 
   Consumer: ./scripts/consumer.sh
